@@ -1,0 +1,54 @@
+@import 'src/styles/variables.scss';
+
+header {
+  background-color: $color-primary;
+  color: $text-color;
+  padding: $padding-default;
+  border-radius: 0 0 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    margin-right: $padding-default;
+  }
+
+  nav li {
+    padding: 5px 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: $text-color;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    font-size: $font-size-default;
+
+    &:hover {
+      color: $link-hover-color;
+    }
+  }
+
+  .logo-container {
+    display: inline-block;
+    margin-left: 25px;
+    margin-top: 10px;
+  }
+
+  .logo-link {
+    display: inline-block;
+    text-decoration: none;
+    font-size: $font-size-large;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+
+    &:hover {
+      color: $link-hover-color;
+    }
+  }
+}

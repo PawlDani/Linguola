@@ -1,10 +1,7 @@
-@import 'src/styles/variables.scss';
-
 header {
   background-color: $color-primary;
   color: $text-color;
   padding: $padding-default;
-  border-radius: 0 0 20px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -1,0 +1,48 @@
+.sidebar {
+  background: $color-primary;
+  color: $text-color-primary;
+  padding: 30px 60px;
+  height: calc(100vh - 100px);
+  border-radius: 0 0 20px 0;
+  position: relative;
+  width: 300px;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 50px;
+}
+
+.sidebar ul li {
+  padding: 15px 20px;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  position: relative;
+  letter-spacing: 1.5px;
+}
+
+.sidebar ul li.active {
+  background: white;
+  color: $color-primary;
+}
+
+.sidebar ul li:not(.active):hover {
+  background: linear-gradient(45deg, #34495e, #4a5364);
+}
+
+.sidebar ul li svg {
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+}
+
+.sidebar ul li a {
+  color: $text-color-primary;
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}

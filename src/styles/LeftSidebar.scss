@@ -1,6 +1,6 @@
 .sidebar {
   background: $color-quaternary;
-  height: 100vh;
+  height: 100%;
   width: 250px;
   border-bottom-right-radius: 25px;
   border-top-right-radius: 25px;
@@ -40,6 +40,11 @@
         margin-bottom: 20px;
         text-decoration: none;
         letter-spacing: 1.2px;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $color-quinary;
+        }
 
         .icon {
           margin-right: 10px;

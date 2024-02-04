@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Sidebar from './components/common/Sidebar/SidebarComponent';
+import LeftSidebar from './components/common/LeftSidebar/LeftSidebarComponent';
 import MainContent from './components/MainContent/MainContentComponent';
 import RightSidebar from './components/common/RightSidebar/RightSidebarComponent';
 
@@ -11,7 +11,7 @@ const App = () => {
   return (
     <div className="App">
       <div className="app-body">
-        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+        <LeftSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
         <MainContent activeTab={activeTab} />
         <RightSidebar />
         {/* Wiecej komponentow bede dodawal tutaj */}

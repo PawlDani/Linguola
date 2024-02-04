@@ -1,5 +1,5 @@
-const HowToComponent = () => {
+const HowTo = () => {
   return <div>How To Placeholder</div>;
 };
 
-export default HowToComponent;
+export default HowTo;

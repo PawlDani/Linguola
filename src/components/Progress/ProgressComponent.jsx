@@ -1,5 +1,5 @@
-const ProgressComponent = () => {
+const Progress = () => {
   return <div>Progress Placeholder</div>;
 };
 
-export default ProgressComponent;
+export default Progress;

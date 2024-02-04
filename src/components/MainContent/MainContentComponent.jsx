@@ -1,8 +1,8 @@
 import React from 'react';
-import DashboardComponent from '/src/components/Dashboard/DashboardComponent';
-import WordsetsComponent from '/src/components/Wordsets/WordsetsComponent';
-import ProgressComponent from '/src/components/Progress/ProgressComponent';
-import HowToComponent from '/src/components/HowTo/HowToComponent';
+import Dashboard from '/src/components/Dashboard/DashboardComponent';
+import Wordsets from '/src/components/Wordsets/WordsetsComponent';
+import Progress from '/src/components/Progress/ProgressComponent';
+import HowTo from '/src/components/HowTo/HowToComponent';
 import '/src/styles/MainContent.scss';
 
 const MainContent = ({ activeTab }) => {
@@ -10,15 +10,15 @@ const MainContent = ({ activeTab }) => {
   const renderContent = () => {
     switch (activeTab) {
       case 'Dashboard':
-        return <DashboardComponent />;
+        return <Dashboard />;
       case 'Wordsets':
-        return <WordsetsComponent />;
+        return <Wordsets />;
       case 'Progress':
-        return <ProgressComponent />;
+        return <Progress />;
       case 'HowTo':
-        return <HowToComponent />;
+        return <HowTo />;
       default:
-        return <DashboardComponent />;
+        return <Dashboard />;
     }
   };
 

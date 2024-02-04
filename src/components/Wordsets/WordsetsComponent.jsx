@@ -1,5 +1,5 @@
-const WordSetsComponent = () => {
+const WordSets = () => {
   return <div>WordSets Placeholder</div>;
 };
 
-export default WordSetsComponent;
+export default WordSets;

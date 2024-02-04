@@ -1,5 +1,5 @@
-const RightSidebarComponent = () => {
-  return <div>Right Sidebar Placeholder</div>;
+const RightSidebar = () => {
+  return <div className="right-sidebar">Right Sidebar Placeholder</div>;
 };
 
-export default RightSidebarComponent;
+export default RightSidebar;

@@ -1,12 +1,18 @@
 @import 'reset.scss';
 @import 'variables.scss';
-@import 'Sidebar.scss';
+@import 'LeftSidebar.scss';
 @import 'HowTo.scss';
 @import 'Progress.scss';
 @import 'Wordsets.scss';
 @import 'MainContent.scss';
 @import 'Dashboard.scss';
+@import 'RightSidebar.scss';
 
 #root {
   background-color: #fbf7f0;
+
+  .app-body {
+    display: flex;
+    height: 100vh;
+  }
 }

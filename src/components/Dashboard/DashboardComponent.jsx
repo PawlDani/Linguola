@@ -1,5 +1,5 @@
-const DashboardComponent = () => {
+const Dashboard = () => {
   return <div>Dashboard Placeholder</div>;
 };
 
-export default DashboardComponent;
+export default Dashboard;

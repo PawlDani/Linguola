@@ -1,7 +1,7 @@
 import maxLogo from '/src/assets/images/max-logo.png'; // Ścieżka do logo
 
 // Komponent paska bocznego
-const Sidebar = ({ activeTab, setActiveTab }) => {
+const LeftSidebar = ({ activeTab, setActiveTab }) => {
   // Przyjmuje dwa propsy: activeTab oraz setActiveTab. setActiveTab to funkcja, ktora zmienia activeTab
   // Definicja zakładek w pasku bocznym
   const tabs = [
@@ -44,4 +44,4 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
   );
 };
 
-export default Sidebar;
+export default LeftSidebar;

@@ -1,27 +1,45 @@
-.side_bar {
-  .side_bar_bottom {
-    background: $color-primary;
-    height: 100vh;
-    width: 250px;
-    padding: 80px 0;
-    padding-left: 20px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+.sidebar {
+  background: $color-quaternary;
+  height: 100vh;
+  width: 250px;
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+  display: flex;
+  flex-direction: column;
 
+  .sidebar_top {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+
+    .sidebar_logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      img {
+        width: auto;
+        height: 100px;
+      }
+    }
+  }
+
+  .sidebar_bottom {
+    padding: 20px 0 0 25px;
     ul li {
       position: relative;
 
       a {
         display: block;
         padding: 20px 20px;
-        font-size: 1.5rem;
-        color: $text-color;
-        margin-bottom: 35px;
-  
+        font: 500 1.2rem $main-font-family;
+        color: $text-color-primary;
+        margin-bottom: 20px;
         text-decoration: none;
         letter-spacing: 1.2px;
-        font-family: $main-font-family;
-        font-weight: 500;
 
         .icon {
           margin-right: 8px;
@@ -31,8 +49,8 @@
 
       &.active {
         a {
-          background: white;
-          color: $color-primary;
+          background: $color-secondary;
+          color: $color-quinary;
           border-top-left-radius: 25px;
           border-bottom-left-radius: 25px;
         }
@@ -43,7 +61,7 @@
           left: 0;
           width: 100%;
           height: 20px;
-          background: white;
+          background: $color-secondary;
         }
 
         .top_curve {
@@ -55,7 +73,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: $color-primary;
+            background: $color-quaternary;
             border-bottom-right-radius: 25px;
           }
         }
@@ -69,7 +87,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: $color-primary;
+            background: $color-quaternary;
             border-top-right-radius: 25px;
           }
         }

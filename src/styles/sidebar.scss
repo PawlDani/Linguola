@@ -1,48 +1,79 @@
-.sidebar {
-  background: $color-primary;
-  color: $text-color-primary;
-  padding: 30px 60px;
-  height: calc(100vh - 100px);
-  border-radius: 0 0 20px 0;
-  position: relative;
-  width: 300px;
-}
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  margin-top: 50px;
-}
+.side_bar {
+  .side_bar_bottom {
+    background: $color-primary;
+    height: 100vh;
+    width: 250px;
+    padding: 80px 0;
+    padding-left: 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 
-.sidebar ul li {
-  padding: 15px 20px;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
-  position: relative;
-  letter-spacing: 1.5px;
-}
+    ul li {
+      position: relative;
 
-.sidebar ul li.active {
-  background: white;
-  color: $color-primary;
-}
+      a {
+        display: block;
+        padding: 20px 20px;
+        font-size: 1.5rem;
+        color: $text-color;
+        margin-bottom: 35px;
+  
+        text-decoration: none;
+        letter-spacing: 1.2px;
+        font-family: $main-font-family;
+        font-weight: 500;
 
-.sidebar ul li:not(.active):hover {
-  background: linear-gradient(45deg, #34495e, #4a5364);
-}
+        .icon {
+          margin-right: 8px;
+          // Add icon styles
+        }
+      }
 
-.sidebar ul li svg {
-  margin-right: 10px;
-  width: 24px;
-  height: 24px;
-}
+      &.active {
+        a {
+          background: white;
+          color: $color-primary;
+          border-top-left-radius: 25px;
+          border-bottom-left-radius: 25px;
+        }
 
-.sidebar ul li a {
-  color: $text-color-primary;
-  text-decoration: none;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
+        .top_curve,
+        .bottom_curve {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 20px;
+          background: white;
+        }
+
+        .top_curve {
+          top: -20px;
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: $color-primary;
+            border-bottom-right-radius: 25px;
+          }
+        }
+
+        .bottom_curve {
+          bottom: -20px;
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: $color-primary;
+            border-top-right-radius: 25px;
+          }
+        }
+      }
+    }
+  }
 }

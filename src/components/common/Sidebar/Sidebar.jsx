@@ -1,25 +1,32 @@
-// Komponent Sidebar zawiera liste zakladek, ktore sa dostepne w aplikacji.
-// activeTab - aktualnie wybrana zakladka, setActiveTab - funkcja zmieniajaca aktualnie wybrana zakladke
-
 const Sidebar = ({ activeTab, setActiveTab }) => {
-  // lista zakladek
   const tabs = [
     { name: 'Dashboard', id: 'Dashboard' },
     { name: 'Wordsets', id: 'Wordsets' },
     { name: 'Progress', id: 'Progress' },
     { name: 'How To', id: 'HowTo' },
-    // wiecej tabow bede dodawal tutaj w razie potrzeby
+    // Add more tabs here as needed
   ];
 
   return (
-    <div className="sidebar">
-      <ul>
-        {tabs.map((tab, index) => (
-          <li key={index} className={activeTab === tab.id ? 'active' : ''} onClick={() => setActiveTab(tab.id)}>
-            {tab.name}
-          </li>
-        ))}
-      </ul>
+    <div className="side_bar">
+      <div className="side_bar_bottom">
+        <ul>
+          {tabs.map((tab) => (
+            <li key={tab.id} className={activeTab === tab.id ? 'active' : ''} onClick={() => setActiveTab(tab.id)}>
+              <a href="#">
+                <span className="icon"></span> {/* Add icon logic here */}
+                <span className="title">{tab.name}</span>
+              </a>
+              {activeTab === tab.id && (
+                <>
+                  <div className="top_curve"></div>
+                  <div className="bottom_curve"></div>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

@@ -1,44 +1,96 @@
 .sidebar {
-  background: $color-primary;
-  color: $text-color-primary;
-  padding: 30px 60px;
-  height: calc(100vh - 100px);
-  position: relative;
-  width: 300px;
+  background: $color-quaternary;
+  height: 100vh;
+  width: 250px;
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+  display: flex;
+  flex-direction: column;
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    margin-top: 50px;
+  .sidebar_top {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
 
-    li {
-      padding: 15px 20px;
-      font-size: $sidebar-font-size;
+    .sidebar_logo {
+      display: flex;
+      align-items: center;
       margin-bottom: 20px;
-      border-radius: 10px;
-      transition: background-color 0.3s ease;
+
+      img {
+        width: auto;
+        height: 100px;
+      }
+    }
+  }
+
+  .sidebar_bottom {
+    padding: 20px 0 0 25px;
+    ul li {
       position: relative;
-      letter-spacing: 1.3px;
-      color: $text-color-primary;
-      font-family: $main-font-family;
-      text-decoration: none;
-      font-weight: 600;
-      text-align: left;
+
+      a {
+        display: block;
+        padding: 20px 20px;
+        font: 500 1.2rem $main-font-family;
+        color: $text-color-primary;
+        margin-bottom: 20px;
+        text-decoration: none;
+        letter-spacing: 1.2px;
+
+        .icon {
+          margin-right: 8px;
+          // Add icon styles
+        }
+      }
 
       &.active {
-        background: white;
-        color: $color-primary;
-      }
+        a {
+          background: $color-secondary;
+          color: $color-quinary;
+          border-top-left-radius: 25px;
+          border-bottom-left-radius: 25px;
+        }
 
-      &:not(.active):hover {
-        background: linear-gradient(45deg, #34495e, #4a5364);
-      }
+        .top_curve,
+        .bottom_curve {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 20px;
+          background: $color-secondary;
+        }
 
-      svg {
-        margin-right: 10px;
-        width: 24px;
-        height: 24px;
+        .top_curve {
+          top: -20px;
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: $color-quaternary;
+            border-bottom-right-radius: 25px;
+          }
+        }
+
+        .bottom_curve {
+          bottom: -20px;
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: $color-quaternary;
+            border-top-right-radius: 25px;
+          }
+        }
       }
     }
   }

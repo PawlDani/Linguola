@@ -35,14 +35,15 @@
       a {
         display: block;
         padding: 20px 20px;
-        font: 500 1.2rem $main-font-family;
+        font: 500 $sidebar-font-size $main-font-family;
         color: $text-color-primary;
         margin-bottom: 20px;
         text-decoration: none;
         letter-spacing: 1.2px;
 
         .icon {
-          margin-right: 8px;
+          margin-right: 10px;
+          font-size: $sidebar-icon-size;
           // Add icon styles
         }
       }

@@ -5,10 +5,10 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
   // Przyjmuje dwa propsy: activeTab oraz setActiveTab. setActiveTab to funkcja, ktora zmienia activeTab
   // Definicja zakładek w pasku bocznym
   const tabs = [
-    { name: 'Dashboard', id: 'Dashboard' },
-    { name: 'Wordsets', id: 'Wordsets' },
-    { name: 'Progress', id: 'Progress' },
-    { name: 'How To', id: 'HowTo' },
+    { name: 'Dashboard', id: 'Dashboard', iconClass: 'fa-solid fa-house' },
+    { name: 'Wordsets', id: 'Wordsets', iconClass: 'fa-solid fa-folder' },
+    { name: 'Progress', id: 'Progress', iconClass: 'fa-solid fa-bars-progress' },
+    { name: 'How To', id: 'HowTo', iconClass: 'fa-solid fa-compass' },
 
     // Wiecej zakladek bede dodawal tutaj
   ];
@@ -27,7 +27,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
             <li key={tab.id} className={activeTab === tab.id ? 'active' : ''} onClick={() => setActiveTab(tab.id)}>
               {/* Klikniecie na zakladke zmienia activeTab na id tej zakladki */}
               <a href="#">
-                <span className="icon"></span> {/* Miejsce na ikonę */}
+                <span className={`icon ${tab.iconClass}`}></span> {/* Ikona dla kazdego tab */}
                 <span className="title">{tab.name}</span>
               </a>
               {activeTab === tab.id && (

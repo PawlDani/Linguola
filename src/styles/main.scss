@@ -1,6 +1,11 @@
 @import 'reset.scss';
 @import 'variables.scss';
-@import 'sidebar.scss';
+@import 'Sidebar.scss';
+@import 'HowTo.scss';
+@import 'Progress.scss';
+@import 'Wordsets.scss';
+@import 'MainContent.scss';
+@import 'Dashboard.scss';
 
 #root {
   background-color: #fbf7f0;

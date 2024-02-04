@@ -26,6 +26,7 @@ header {
     font-weight: bold;
     transition: color 0.3s ease;
     font-size: $font-size-default;
+    font-family: $main-font-family;
 
     &:hover {
       color: $link-hover-color;
@@ -43,7 +44,7 @@ header {
     text-decoration: none;
     font-size: $font-size-large;
     font-weight: bold;
-    font-family: 'Arial', sans-serif;
+    font-family: $main-font-family;
 
     &:hover {
       color: $link-hover-color;

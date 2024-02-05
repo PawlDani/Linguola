@@ -4,8 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 300px;
-  // make my #ddaf90  opaque
+  min-width: 300px;
   background-color: $color-tertiary-opaque;
   margin-right: 10px;
   border-radius: 25px;

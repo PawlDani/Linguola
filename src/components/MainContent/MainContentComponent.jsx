@@ -5,14 +5,15 @@ import Progress from '/src/components/Progress/ProgressComponent';
 import HowTo from '/src/components/HowTo/HowToComponent';
 import '/src/styles/MainContent.scss';
 
-const MainContent = ({ activeTab }) => {
+const MainContent = ({ activeTab, activeWordSet, setActiveWordSet }) => {
   // renderowanie zawartosci glownej
   const renderContent = () => {
     switch (activeTab) {
       case 'Dashboard':
         return <Dashboard />;
       case 'Wordsets':
-        return <Wordsets />;
+        // przekazanie aktywnego zestawu slow do komponentu Wordsets jako props
+        return <Wordsets activeWordSet={activeWordSet} setActiveWordSet={setActiveWordSet} />;
       case 'Progress':
         return <Progress />;
       case 'HowTo':

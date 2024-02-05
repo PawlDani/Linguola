@@ -1,4 +1,4 @@
-import maxLogo from '/src/assets/images/max-logo.png'; // Ścieżka do logo
+import maxLogo from '/src/assets/images/max-logo-colored.png'; // Ścieżka do logo
 
 // Komponent paska bocznego
 const LeftSidebar = ({ activeTab, setActiveTab }) => {

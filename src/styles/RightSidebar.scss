@@ -4,12 +4,11 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 250px;
+  width: 300px;
   // make my #ddaf90  opaque
-  background-color: rgba(221, 175, 144, 0.15);
+  background-color: $color-tertiary-opaque;
   margin-right: 10px;
-  border-radius: 20px;
-  border: rgba(221, 175, 144, 0.15);
+  border-radius: 25px;
   text-align: center;
   padding: 20px;
 }

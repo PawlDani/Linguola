@@ -4,6 +4,7 @@
   min-width: 250px;
   border-bottom-right-radius: 25px;
   border-top-right-radius: 25px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
 
@@ -28,72 +29,38 @@
   }
 
   .sidebar_bottom {
-    padding: 20px 0 0 25px;
-    ul li {
-      position: relative;
+    padding: 20px 0;
+    ul {
+      display: flex;
+      flex-direction: column;
+      padding: 0 30px;
 
-      a {
-        display: block;
-        padding: 20px 20px;
-        font: 500 $sidebar-font-size $main-font-family;
-        color: $color-secondary;
-        margin-bottom: 20px;
-        text-decoration: none;
-        letter-spacing: 1.2px;
-        transition: color 0.3s ease;
+      li {
+        a {
+          display: flex;
+          padding: 20px 20px;
+          font: 500 $sidebar-font-size $main-font-family;
+          color: $color-secondary;
+          margin-bottom: 20px;
+          text-decoration: none;
+          letter-spacing: 1.2px;
+          transition: color 0.3s ease-in-out;
 
-        &:hover {
+          &:hover {
+            color: $color-primary;
+          }
+
+          .icon {
+            margin-right: 10px;
+            font-size: $sidebar-icon-size;
+          }
+        }
+
+        a.active {
           color: $color-primary;
-        }
-
-        .icon {
-          margin-right: 10px;
-          font-size: $sidebar-icon-size;
-          // Add icon styles
-        }
-      }
-
-      a.active {
-        background: $color-secondary;
-        color: $color-primary;
-        border-top-left-radius: 25px;
-        border-bottom-left-radius: 25px;
-
-        .top_curve,
-        .bottom_curve {
-          position: absolute;
-          left: 0;
-          width: 100%;
-          height: 20px;
-          background: $color-secondary;
-        }
-
-        .top_curve {
-          top: -20px;
-          &:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: $color-tertiary;
-            border-bottom-right-radius: 25px;
-          }
-        }
-
-        .bottom_curve {
-          bottom: -20px;
-          &:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: $color-tertiary;
-            border-top-right-radius: 25px;
-          }
+          background-color: $color-secondary;
+          border-radius: 20px;
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
         }
       }
     }

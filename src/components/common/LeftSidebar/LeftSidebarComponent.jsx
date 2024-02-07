@@ -1,14 +1,15 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import maxLogo from '/src/assets/images/max-logo-colored.png'; // Ścieżka do logo
 
 // Komponent paska bocznego
-const LeftSidebar = ({ activeTab, setActiveTab }) => {
-  // Przyjmuje dwa propsy: activeTab oraz setActiveTab. setActiveTab to funkcja, ktora zmienia activeTab
+const LeftSidebar = () => {
   // Definicja zakładek w pasku bocznym
   const tabs = [
-    { name: 'Dashboard', id: 'Dashboard', iconClass: 'fa-solid fa-house' },
-    { name: 'Wordsets', id: 'Wordsets', iconClass: 'fa-solid fa-folder' },
-    { name: 'Progress', id: 'Progress', iconClass: 'fa-solid fa-bars-progress' },
-    { name: 'How To', id: 'HowTo', iconClass: 'fa-solid fa-compass' },
+    { name: 'Dashboard', to: '/', iconClass: 'fa-solid fa-house' },
+    { name: 'Wordsets', to: '/Wordsets', iconClass: 'fa-solid fa-folder' },
+    { name: 'Progress', to: '/Progress', iconClass: 'fa-solid fa-bars-progress' },
+    { name: 'How To', to: '/HowTo', iconClass: 'fa-solid fa-compass' },
 
     // Wiecej zakladek bede dodawal tutaj
   ];
@@ -24,18 +25,11 @@ const LeftSidebar = ({ activeTab, setActiveTab }) => {
       <div className="sidebar_bottom">
         <ul>
           {tabs.map((tab) => (
-            <li key={tab.id} className={activeTab === tab.id ? 'active' : ''} onClick={() => setActiveTab(tab.id)}>
-              {/* Klikniecie na zakladke zmienia activeTab na id tej zakladki */}
-              <a href="#">
-                <span className={`icon ${tab.iconClass}`}></span> {/* Ikona dla kazdego tab */}
+            <li key={tab.to}>
+              <NavLink to={tab.to} className={({ isActive }) => (isActive ? 'active' : '')} end>
+                <span className={`icon ${tab.iconClass}`}></span>
                 <span className="title">{tab.name}</span>
-              </a>
-              {activeTab === tab.id && (
-                <>
-                  <div className="top_curve"></div>
-                  <div className="bottom_curve"></div>
-                </>
-              )}
+              </NavLink>
             </li>
           ))}
         </ul>

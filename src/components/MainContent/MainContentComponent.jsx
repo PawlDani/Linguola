@@ -4,7 +4,7 @@ import Dashboard from '/src/components/Dashboard/DashboardComponent';
 import Wordsets from '/src/components/Wordsets/WordsetsComponent';
 import Progress from '/src/components/Progress/ProgressComponent';
 import HowTo from '/src/components/HowTo/HowToComponent';
-import '/src/styles/MainContent.scss';
+import './MainContent.scss';
 
 const MainContent = () => {
   return (

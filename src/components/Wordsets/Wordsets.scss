@@ -1,0 +1,57 @@
+@import '/src/styles/variables.scss';
+
+.word-sets-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+
+  .word-sets-header {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    height: 120px;
+    width: 90%;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    height: 40px;
+    width: 90%;
+
+    h2 {
+      font: 600 $page-title-font-size $main-font-family;
+      color: $color-primary;
+    }
+  }
+
+  .word-sets {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+
+    width: 90%;
+    height: 70%;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+
+    .word-set-card {
+      display: flex;
+      height: 100px;
+      width: 200px;
+      height: 200px;
+      border: 4px solid $color-tertiary;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
+      align-items: center;
+      justify-content: center;
+      font-size: $font-size-large;
+
+      &:hover {
+        background-color: $color-tertiary;
+        color: $color-secondary;
+      }
+    }
+  }
+}

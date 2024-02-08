@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchWordsets } from '/src/api/api.js';
+import './Wordsets.scss';
 
 const WordSetsComponent = ({ setActiveWordSet }) => {
   const [wordsets, setWordsets] = useState([]); // stan dla zestawow slow
@@ -31,12 +32,17 @@ const WordSetsComponent = ({ setActiveWordSet }) => {
 
   return (
     <div className="word-sets-container">
-      {error && <div className="error-message">{error}</div>}
-      {wordsets.map((category, index) => (
-        <div key={index} className="word-set-card" onClick={() => handleWordSetClick(category)}>
-          {category}
-        </div>
-      ))}
+      <div className="word-sets-header">
+        <h2>Wordsets</h2>
+      </div>
+      <div className="word-sets">
+        {error && <div className="error-message">{error}</div>}
+        {wordsets.map((category, index) => (
+          <div key={index} className="word-set-card" onClick={() => handleWordSetClick(category)}>
+            {category}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

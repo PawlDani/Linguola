@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import './LeftSidebar.scss';
 import maxLogo from '/src/assets/images/max-logo-colored.png'; // Ścieżka do logo
 
 // Komponent paska bocznego

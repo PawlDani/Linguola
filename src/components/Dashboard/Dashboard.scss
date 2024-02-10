@@ -14,11 +14,13 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 90%;
-    margin: 20px 0;
+    margin-top: 20px;
+    margin-bottom: 60px;
 
     h2 {
       font: 600 $page-title-font-size $main-font-family;
       color: $color-primary;
+      text-transform: uppercase;
     }
 
     p {
@@ -30,17 +32,25 @@
   .dashboard_middle {
     align-self: center;
     display: flex;
-    margin: 20px;
     width: 90%;
+    height: 15%;
     background-color: $color-tertiary-opaque;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     border-radius: $border-radius-primary;
+    z-index: 1;
+    position: relative;
+
     img {
-      height: 100%;
-      margin-left: 100px;
+      align-self: flex-end;
+      max-height: 300px;
+      z-index: 2;
+      position: absolute;
+      bottom: -60px;
+      left: 80px;
     }
     p {
-      margin: 0 100px;
+      align-self: center;
+      margin-left: 400px;
       font: 600 $font-size-large $main-font-family;
       color: $color-primary;
     }
@@ -49,7 +59,7 @@
   .dashboard_bottom {
     align-self: center;
     display: flex;
-    margin: 20px;
+    margin-bottom: 120px;
     width: 90%;
     height: 40%;
     background-color: $color-tertiary-opaque;

@@ -43,6 +43,10 @@ const WordSetsComponent = () => {
     navigate(`/wordsets/${category}/exercises`);
   };
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   // Ustawienia dla karuzeli
   const settings = {
     dots: true,
@@ -91,7 +95,7 @@ const WordSetsComponent = () => {
           {wordsets.map((category, index) => (
             // Renderowanie kart dla każdej unikalnej kategorii
             <div key={index} className="word-set-card" onClick={() => handleWordSetClick(category)}>
-              {category}
+              {capitalizeFirstLetter(category)}
             </div>
           ))}
         </Slider>

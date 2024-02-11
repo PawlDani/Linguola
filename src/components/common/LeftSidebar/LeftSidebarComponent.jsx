@@ -1,19 +1,27 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom'; // Import useLocation
 import './LeftSidebar.scss';
 import maxLogo from '/src/assets/images/max-logo-colored.png'; // Ścieżka do logo
 
 // Komponent paska bocznego
 const LeftSidebar = () => {
+  const location = useLocation(); // Użycie hooka useLocation do pobrania aktualnej ścieżki
+
   // Definicja zakładek w pasku bocznym
   const tabs = [
     { name: 'Dashboard', to: '/', iconClass: 'fa-solid fa-house' },
-    { name: 'Wordsets', to: '/Wordsets', iconClass: 'fa-solid fa-folder' },
-    { name: 'Progress', to: '/Progress', iconClass: 'fa-solid fa-bars-progress' },
-    { name: 'How To', to: '/HowTo', iconClass: 'fa-solid fa-compass' },
-
+    { name: 'Wordsets', to: '/wordsets', iconClass: 'fa-solid fa-folder' }, // Poprawiona ścieżka na małe litery
+    { name: 'Progress', to: '/progress', iconClass: 'fa-solid fa-bars-progress' },
+    { name: 'How To', to: '/howto', iconClass: 'fa-solid fa-compass' },
     // Wiecej zakladek bede dodawal tutaj
   ];
+
+  // Funkcja do określenia, czy zakładka powinna być aktywna
+  const getNavLinkClass = (path) => {
+    return location.pathname === path || (path === '/wordsets' && location.pathname.includes('/wordsets'))
+      ? 'active'
+      : ''; // Sprawdzenie czy ścieżka zawiera '/wordsets'
+  };
 
   // Renderowanie paska bocznego
   return (
@@ -27,11 +35,11 @@ const LeftSidebar = () => {
         <ul>
           {tabs.map((tab) => (
             <li key={tab.to}>
-              {' '}
-              {/* Klucz */}
-              <NavLink to={tab.to} className={({ isActive }) => (isActive ? 'active' : '')} end>
-                {' '}
-                {/* Aktywna zakładka */}
+              <NavLink
+                to={tab.to}
+                className={() => getNavLinkClass(tab.to)} // Użycie funkcji do określenia klasy
+                end
+              >
                 <span className={`icon ${tab.iconClass}`}></span> {/* Ikona */}
                 <span className="title">{tab.name}</span> {/* Nazwa zakładki */}
               </NavLink>

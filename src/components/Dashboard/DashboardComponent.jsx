@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.scss';
 
+// Komponent strony głównej
 const Dashboard = () => {
-  const [currentDate, setCurrentDate] = useState('');
+  const [currentDate, setCurrentDate] = useState(''); // Aktualna data
 
   useEffect(() => {
+    // Ustawienie aktualnej daty
     const timer = setInterval(() => {
       const now = new Date();
-      setCurrentDate(`${now.getDate()} ${now.toLocaleString('default', { month: 'short' })} ${now.getFullYear()}`);
+      setCurrentDate(`${now.getDate()} ${now.toLocaleString('default', { month: 'short' })} ${now.getFullYear()}`); // Formatowanie daty
     }, 1000);
     return () => clearInterval(timer);
   }, []);

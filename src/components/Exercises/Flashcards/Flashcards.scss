@@ -1,0 +1,109 @@
+@import '/src/styles/variables.scss';
+
+.flashcard-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  perspective: 1000px; // potrzebne do animacji 3D
+  height: 500px;
+  width: 500px; // Szerokosc kontenera kart do modyfikacji
+  max-width: 800px; // Maxymalna szerokosc kontenera kart
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: baseline;
+  margin-top: 50px;
+
+  h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .flashcard {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 204px;
+    width: 90%;
+    margin-bottom: 40px; // Miejsce miedzy kartami a przyciskami
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+
+    &.flipped {
+      transform: rotateY(180deg); // Odwrócenie karty
+    }
+
+    .front,
+    .back {
+      position: absolute;
+      width: 100%;
+      height: 204px;
+      backface-visibility: hidden; // Ukryj tylna strone karty podczas obrotu
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+
+      &.back {
+        background-color: #f0f0f0;
+        transform: rotateY(180deg); // Rotacja tylnej strony karty
+      }
+    }
+
+    .term,
+    .definition {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+
+      &.definition {
+        font-size: 18px;
+      }
+    }
+  }
+
+  // Stylowanie przyciskow
+  button {
+    padding: 10px 20px;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 10px; // Miejsce miedzy przyciskami
+    margin-top: 20px; // Miejsce nad przyciskami
+    transition: background-color 0.2s; // Animacja zmiany koloru tla przyciskow
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &.known-button {
+      background-color: #28a745;
+    }
+
+    &.revisit-button {
+      background-color: #dc3545;
+    }
+
+    &.next-button {
+      background-color: #007bff;
+    }
+  }
+
+  // Style dla kart z odpowiednimi klasami
+  .flashcard.known {
+    border: 2px solid #4caf50;
+  }
+
+  .flashcard.revisit {
+    border: 2px solid #f44336;
+  }
+}

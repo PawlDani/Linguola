@@ -27,9 +27,13 @@ const LeftSidebar = () => {
         <ul>
           {tabs.map((tab) => (
             <li key={tab.to}>
+              {' '}
+              {/* Klucz */}
               <NavLink to={tab.to} className={({ isActive }) => (isActive ? 'active' : '')} end>
-                <span className={`icon ${tab.iconClass}`}></span>
-                <span className="title">{tab.name}</span>
+                {' '}
+                {/* Aktywna zakładka */}
+                <span className={`icon ${tab.iconClass}`}></span> {/* Ikona */}
+                <span className="title">{tab.name}</span> {/* Nazwa zakładki */}
               </NavLink>
             </li>
           ))}

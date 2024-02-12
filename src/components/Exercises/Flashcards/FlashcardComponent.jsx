@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Flashcards.scss';
 
 const FlashcardComponent = ({ terms }) => {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [cardStatus, setCardStatus] = useState({});
+
+  useEffect(() => {
+    console.log('Flashcards initialized with terms:', terms); // log dla inicjalizacji komponentu z terms
+  }, [terms]);
 
   // Funkcja obsługująca obracanie karty, czyli zmianę widoku z term na definition i odwrotnie
   const handleFlipCard = () => {

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { fetchTermsByCategory } from '/src/api/api.js';
 import FlashcardComponent from './Flashcards/FlashcardComponent';
 import MatchingGameComponent from './MatchingGame/MatchingGameComponent';
+import TranslationComponent from './Translation/TranslationComponent';
 import './Exercise.scss';
 
 // Komponent obsługujący wybór gry oraz wyświetlanie wybranej gry
@@ -22,6 +23,10 @@ const ExerciseComponent = () => {
     // Wywołanie funkcji "loadTerms", zależne od zmiany wybranej kategorii
     loadTerms();
   }, [category]);
+
+  useEffect(() => {
+    console.log(`Active Game is now: ${activeGame}`); // Logowanie zmiany aktywnej gry
+  }, [activeGame]);
 
   // Funkcja obsługująca zmianę wybranej gry
   const handleGameChange = (game) => {
@@ -46,10 +51,18 @@ const ExerciseComponent = () => {
           <i className="fa-solid fa-puzzle-piece"></i>
           Dopasowanie
         </button>
+        <button
+          onClick={() => handleGameChange('translation')}
+          className={`exercise-option ${activeGame === 'translation' ? 'active' : ''}`}
+        >
+          <i className="fa-solid fa-pen-to-square"></i>
+          Tłumaczenie
+        </button>
       </div>
 
       {activeGame === 'flashcards' && <FlashcardComponent terms={terms} />}
       {activeGame === 'matching' && <MatchingGameComponent terms={terms} />}
+      {activeGame === 'translation' && <TranslationComponent terms={terms} />}
     </div>
   );
 };

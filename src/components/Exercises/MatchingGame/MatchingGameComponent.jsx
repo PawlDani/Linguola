@@ -11,6 +11,7 @@ const MatchingGameComponent = ({ terms }) => {
   // Efekt inicjalizujacy gre przy zmianie zestawu slow
   useEffect(() => {
     initializeGame();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terms]);
 
   // Funkcja inicjalizujaca gre, przygotowujaca karty, tasujaca je i ustawiajaca stany
@@ -20,7 +21,7 @@ const MatchingGameComponent = ({ terms }) => {
     setCards(shuffledCards.map((card) => ({ ...card, unmatched: false })));
     setSelectedCards([]);
     setMatchedPairs(0);
-    console.log('Game initialized');
+    console.log('MatchingGame initialized with terms:', terms);
   };
 
   // Funkcja przygotowująca karty na podstawie zestawu terminów

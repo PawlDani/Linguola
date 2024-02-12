@@ -19,15 +19,25 @@ $color-tertiary-opaque: rgba(67, 123, 163, 0.509);
 
 // Game Colors
 $color-matching-game-card: #f9f9f9;
+$color-flashcard-front: #ffffff;
 $color-flashcard-back: #f0f0f0;
 $color-flashcard-known: #28a745;
 $color-flashcard-revisit: #dc3545;
 $color-flashcard-next: #007bff;
+$color-translation-card: #ffffff;
+$color-translation-right: #28a745;
+$color-translation-wrong: #dc3545;
+$color-translation-check: #28a745;
+$color-translation-next: #007bff;
+$color-matching-game-selected: #007bff;
+$color-matching-game-matched: #28a745;
+$color-matching-game-unmatched: #dc3545;
 
 // Text colors
 $text-color-primary: #dce7f4;
 $text-color-flashcard-button: #ffffff;
 $text-color-exercise-selector-active: #ffffff;
+$text-color-translation-button: #ffffff;
 
 // Sizes
 
@@ -42,6 +52,8 @@ $exercise-title-font-size: 2rem;
 $font-size-matching-game-card: 2rem;
 $font-size-flashcard-term-defintion: 2rem;
 $font-size-flashcard-button: 1.2rem;
+$font-size-translation-term-defintion: 2rem;
+$font-size-translation-button: 1.2rem;
 
 // Border Radius
 
@@ -50,6 +62,8 @@ $border-radius-matching-game: 10px;
 $border-radius-flashcards: 10px;
 $border-radius-flashcards-button: 8px;
 $border-radius-exercise-selector: 20px;
+$border-radius-translation-card: 10px;
+$border-radius-translation-card-button: 8px;
 
 // Border Styles
 

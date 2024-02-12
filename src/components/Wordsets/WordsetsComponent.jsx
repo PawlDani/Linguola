@@ -16,20 +16,20 @@ const WordSetsComponent = () => {
   useEffect(() => {
     const loadWordsets = async () => {
       // Funkcja asynchroniczna do pobierania zestawów słów
-      console.log('Rozpoczęcie ładowania zestawów słów');
+      console.log('Starting to load wordsets');
       try {
         const fetchedWordsets = await fetchWordsets(); // Pobranie zestawów słów
-        console.log('Pobrane zestawy słów:', fetchedWordsets);
+        console.log('Fetched wordsets:', fetchedWordsets);
         if (fetchedWordsets) {
           // Jeśli zestawy słów zostały pobrane, to wyodrębnij unikalne kategorie
           const uniqueCategories = [...new Set(fetchedWordsets.map((wordSet) => wordSet.category))]; // Wyodrębnienie unikalnych kategorii
-          console.log('Unikalne kategorie:', uniqueCategories);
+          console.log('Unique Categories', uniqueCategories);
           setWordsets(uniqueCategories);
         }
       } catch (err) {
         // Obsługa błędu
-        console.error('Błąd podczas ładowania zestawów słów:', err);
-        setError('Nie udało się załadować zestawów słów. Proszę spróbować później.');
+        console.error('Error while loading words:', err);
+        setError('Not able to load wordsets');
       }
     };
 
@@ -38,7 +38,7 @@ const WordSetsComponent = () => {
 
   // Obsługa kliknięcia na kartę zestawu słów
   const handleWordSetClick = (category) => {
-    console.log('Wybrano kategorię:', category);
+    console.log('Chosen category:', category);
     // Nawigacja do strony ćwiczeń dla wybranej kategorii poprzez URL
     navigate(`/wordsets/${category}/exercises`);
   };

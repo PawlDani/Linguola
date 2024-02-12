@@ -1,0 +1,106 @@
+@import '/src/styles/variables.scss';
+@import '/src/components/Exercises/common';
+
+.translation-game-container {
+  @extend %game-container;
+
+  .translation-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    width: 450px;
+    background-color: $color-translation-card;
+    border-radius: $border-radius-translation-card;
+    box-shadow: 8px 8px 8px 8px rgba(0.1, 0.1, 0.1, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+
+    &.correct {
+      border: 2px solid $color-translation-right; // Indicate correct with a green border
+    }
+
+    &.incorrect {
+      border: 2px solid $color-translation-wrong; // Indicate incorrect with a red border
+    }
+
+    .term {
+      font-size: $font-size-translation-term-defintion;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .your-answer,
+    .right-answer {
+      font-size: $font-size-translation-term-defintion;
+      margin: 5px 0;
+    }
+
+    .your-answer {
+      color: $color-translation-wrong;
+    }
+    .right-answer {
+      color: $color-translation-right;
+    }
+  }
+
+  input[type='text'] {
+    padding: 10px 20px;
+    width: 400px;
+    border-radius: $border-radius-translation-card;
+    border: 2px solid $color-secondary;
+    font-size: $font-size-translation-term-defintion;
+    margin-bottom: 20px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    .check-button {
+      background-color: $color-translation-check; // Use the known color for the check button
+    }
+
+    .next-button {
+      background-color: $color-translation-next; // Use the next color for the next button
+    }
+    button {
+      padding: 10px 20px;
+      width: 180px;
+      color: $text-color-translation-button;
+      border: none;
+      border-radius: $border-radius-translation-card-button;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: $font-size-translation-button;
+      transition: background-color 0.2s;
+      &:not(:last-of-type) {
+        margin-right: 20px;
+      }
+      &:hover {
+        opacity: 0.9;
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+  .answer-header {
+    margin-bottom: 10px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+
+    &.correct {
+      color: $color-translation-right;
+    }
+
+    &.incorrect {
+      color: $color-translation-wrong;
+    }
+  }
+}

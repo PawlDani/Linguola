@@ -1,34 +1,18 @@
 @import '/src/styles/variables.scss';
+@import '/src//components/Exercises/common';
 
 .flashcard-container {
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  @extend %game-container;
   perspective: 1000px; // potrzebne do animacji 3D
-  height: 500px;
-  width: 500px; // Szerokosc kontenera kart do modyfikacji
-  max-width: 800px; // Maxymalna szerokosc kontenera kart
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-self: baseline;
-  margin-top: 50px;
-
-  h2 {
-    margin-bottom: 30px;
-    font-size: 24px;
-    font-weight: bold;
-  }
 
   .flashcard {
+    display: flex;
+    align-items: center;
     background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 204px;
-    width: 90%;
+    border-radius: $border-radius-flashcards;
+    box-shadow: 8px 8px 8px 8px rgba(0.1, 0.1, 0.1, 0.1);
+    height: 350px;
+    width: 450px;
     margin-bottom: 40px; // Miejsce miedzy kartami a przyciskami
     position: relative;
     transition: transform 0.6s;
@@ -36,74 +20,77 @@
     cursor: pointer;
 
     &.flipped {
-      transform: rotateY(180deg); // Odwrócenie karty
+      transform: rotateX(180deg); // Odwrócenie karty
     }
 
     .front,
     .back {
       position: absolute;
       width: 100%;
-      height: 204px;
-      backface-visibility: hidden; // Ukryj tylna strone karty podczas obrotu
+      height: 348px;
+      backface-visibility: hidden; // Tylna strona karty ukryta
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 12px;
+      border-radius: $border-radius-flashcards;
 
       &.back {
-        background-color: #f0f0f0;
-        transform: rotateY(180deg); // Rotacja tylnej strony karty
+        background-color: $color-flashcard-back;
+        transform: rotateX(180deg); // Rotacja tylnej strony karty
       }
     }
 
     .term,
     .definition {
-      font-size: 24px;
+      font-size: $font-size-flashcard-term-defintion;
       font-weight: bold;
       text-align: center;
-
-      &.definition {
-        font-size: 18px;
-      }
     }
   }
 
   // Stylowanie przyciskow
   button {
     padding: 10px 20px;
-    color: #ffffff;
+    width: 150px;
+    height: 50px;
+    color: $text-color-flashcard-button;
     border: none;
-    border-radius: 8px;
+    border-radius: $border-radius-flashcards-button;
     cursor: pointer;
     font-weight: bold;
-    font-size: 18px;
-    margin-right: 10px; // Miejsce miedzy przyciskami
+    font-size: $font-size-flashcard-button;
+    margin-right: 15px; // Miejsce miedzy przyciskami
     margin-top: 20px; // Miejsce nad przyciskami
-    transition: background-color 0.2s; // Animacja zmiany koloru tla przyciskow
+    transition: background-color 0.2s;
+
+    // ostatni przycisk bez margin-right
+    &:last-of-type {
+      margin-right: 0;
+    }
 
     &:hover {
       opacity: 0.9;
     }
 
     &.known-button {
-      background-color: #28a745;
+      background-color: $color-flashcard-known;
     }
 
     &.revisit-button {
-      background-color: #dc3545;
+      background-color: $color-flashcard-revisit;
     }
 
     &.next-button {
-      background-color: #007bff;
+      background-color: $color-flashcard-next;
     }
   }
 
   // Style dla kart z odpowiednimi klasami
   .flashcard.known {
-    border: 2px solid #4caf50;
+    border: 2px solid $color-flashcard-known;
   }
 
   .flashcard.revisit {
-    border: 2px solid #f44336;
+    border: 2px solid $color-flashcard-revisit;
   }
 }

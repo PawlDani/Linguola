@@ -1,0 +1,83 @@
+@import '/src/styles/variables.scss';
+@import '/src/components/Exercises/common';
+
+.matching-game-container {
+  @extend %game-container;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.card {
+  height: 100px;
+  width: 220px;
+  border: $border-style-matching-game-card;
+  border-radius: $border-radius-matching-game;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: $color-matching-game-card;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.card.selected,
+.card.matched {
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card.selected {
+  border-color: blue;
+}
+
+.card.matched {
+  border-color: green;
+}
+
+.card.unmatched {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  border-color: red;
+}
+
+.card-content {
+  font-size: $font-size-matching-game-card;
+  text-align: center;
+}
+
+.matched-pairs-info {
+  padding-top: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Shaking animation keyframes */
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

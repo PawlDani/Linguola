@@ -29,7 +29,6 @@ const FlashcardComponent = ({ terms }) => {
 
   return (
     <div className="flashcard-container">
-      <h2>Flashcards</h2>
       {terms.length > 0 && (
         <div
           className={`flashcard ${isFlipped ? 'flipped' : ''} ${cardStatus[terms[currentCardIndex].id] || ''}`} // Dodanie klasy w zależności od statusu karty

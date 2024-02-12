@@ -1,0 +1,11 @@
+// Wspolny styl dla wszystkich komponentow w folderze Exercises
+
+%game-container {
+  height: 600px;
+  min-width: 980px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 80px auto;
+}

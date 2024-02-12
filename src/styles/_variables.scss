@@ -1,25 +1,33 @@
 // Original Colors
 
-// $color-primary: #c3584f;  //
+// $color-primary: #c3584f;
 // $color-secondary: #fbf7f0;
 // $color-tertiary: #ddaf90;
 // $color-tertiary-opaque: rgba(221, 175, 144, 0.35);
 
-// Secondary colors
+// Adittional colors
 
-// Colors
-$color-primary: #034661; // #379682 #687864
-$color-secondary: #dce7f4; // #edf5e1
-$color-tertiary: #427aa1; // #05386B
-$color-tertiary-opaque: rgba(67, 123, 163, 0.509);
-
-// // Adittional colors
 // $color-quaternary: #8e694b;
 // $color-quinary: #679436;
 // $color-sextary: #a5be00;
 
+// Colors
+$color-primary: #034661; // #379682 #687864
+$color-secondary: #dce7f4; // #edf5e1 // #dce7f4;
+$color-tertiary: #427aa1; // #05386B
+$color-tertiary-opaque: rgba(67, 123, 163, 0.509);
+
+// Game Colors
+$color-matching-game-card: #f9f9f9;
+$color-flashcard-back: #f0f0f0;
+$color-flashcard-known: #28a745;
+$color-flashcard-revisit: #dc3545;
+$color-flashcard-next: #007bff;
+
 // Text colors
 $text-color-primary: #dce7f4;
+$text-color-flashcard-button: #ffffff;
+$text-color-exercise-selector-active: #ffffff;
 
 // Sizes
 
@@ -30,10 +38,23 @@ $sidebar-icon-size: 1.4rem;
 $page-title-font-size: 2rem;
 $page-time-font-size: 1.8rem;
 $wordset-card-font-size: 1.5rem;
+$exercise-title-font-size: 2rem;
+$font-size-matching-game-card: 2rem;
+$font-size-flashcard-term-defintion: 2rem;
+$font-size-flashcard-button: 1.2rem;
 
-// Borders
+// Border Radius
 
 $border-radius-primary: 25px;
-// Fonts
+$border-radius-matching-game: 10px;
+$border-radius-flashcards: 10px;
+$border-radius-flashcards-button: 8px;
+$border-radius-exercise-selector: 20px;
+
+// Border Styles
+
+$border-style-matching-game-card: 1px solid #ccc;
+
+// Font Families
 
 $main-font-family: 'Roboto', sans-serif;

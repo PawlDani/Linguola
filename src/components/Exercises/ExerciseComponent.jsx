@@ -35,7 +35,7 @@ const ExerciseComponent = () => {
 
   // Renderowanie komponentu
   return (
-    <div>
+    <div className="exercise-container">
       <div className="exercise-selector">
         <button
           onClick={() => handleGameChange('flashcards')}
@@ -59,10 +59,11 @@ const ExerciseComponent = () => {
           Tłumaczenie
         </button>
       </div>
-
-      {activeGame === 'flashcards' && <FlashcardComponent terms={terms} />}
-      {activeGame === 'matching' && <MatchingGameComponent terms={terms} />}
-      {activeGame === 'translation' && <TranslationComponent terms={terms} />}
+      <div className="game-container">
+        {activeGame === 'flashcards' && <FlashcardComponent terms={terms} />}
+        {activeGame === 'matching' && <MatchingGameComponent terms={terms} />}
+        {activeGame === 'translation' && <TranslationComponent terms={terms} />}
+      </div>
     </div>
   );
 };

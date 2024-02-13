@@ -3,6 +3,7 @@
 
 .translation-game-container {
   @extend %game-container;
+  position: relative;
 
   .translation-card {
     display: flex;
@@ -29,7 +30,6 @@
     .term {
       font-size: $font-size-translation-term-defintion;
       font-weight: bold;
-      margin-bottom: 20px;
     }
 
     .your-answer,
@@ -47,12 +47,13 @@
   }
 
   input[type='text'] {
-    padding: 10px 20px;
+    padding: 5px 20px;
     width: 400px;
     border-radius: $border-radius-translation-card;
     border: 2px solid $color-secondary;
     font-size: $font-size-translation-term-defintion;
     margin-bottom: 20px;
+    text-align: center;
   }
 
   .button-container {
@@ -89,7 +90,9 @@
   }
 
   .answer-header {
+    position: absolute;
     margin-bottom: 10px;
+    top: -40px;
     font-size: 32px;
     font-weight: bold;
     text-align: center;

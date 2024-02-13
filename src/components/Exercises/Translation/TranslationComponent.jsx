@@ -47,7 +47,7 @@ const TranslationComponent = ({ terms }) => {
       {/* Umożliwienie obsługi zdarzeń klawiatury */}
       {isCorrect !== null && (
         <h2 className={`answer-header ${isCorrect ? 'correct' : 'incorrect'}`}>
-          {isCorrect ? 'Poprawna' : 'Niepoprawna'} {/* Nagłówek informujący o poprawności odpowiedzi */}
+          {isCorrect ? 'Dobrze' : 'Źle'} {/* Nagłówek informujący o poprawności odpowiedzi */}
         </h2>
       )}
       <div className={`translation-card ${isCorrect ? 'correct' : isCorrect === false ? 'incorrect' : ''}`}>

@@ -15,7 +15,6 @@
     align-items: flex-start;
     width: 90%;
     margin-top: 20px;
-    margin-bottom: 60px;
 
     h2 {
       font: 600 $page-title-font-size $main-font-family;
@@ -39,6 +38,7 @@
     border-radius: $border-radius-primary;
     z-index: 1;
     position: relative;
+    margin-top: 40px;
 
     img {
       align-self: flex-end;
@@ -50,7 +50,7 @@
     }
     p {
       align-self: center;
-      margin-left: 400px;
+      margin-left: 350px;
       font: 600 $font-size-large $main-font-family;
       color: $color-primary;
     }
@@ -59,13 +59,83 @@
   .dashboard_bottom {
     align-self: center;
     display: flex;
-    margin-bottom: 120px;
-    width: 90%;
-    height: 40%;
-    background-color: $color-tertiary-opaque;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
-    border-radius: $border-radius-primary;
+    flex-direction: column;
+    width: 940px;
     justify-content: center;
-    align-items: center;
+    margin-bottom: 60px;
+
+    @media (min-width: 2180px) {
+      width: 1620px;
+    }
+
+    h3 {
+      font: 600 $dashboard-slider-font-size $main-font-family;
+      color: $color-primary;
+      margin-bottom: 20px;
+    }
+
+    .slick-slider {
+      width: 100%;
+      padding-bottom: 20px;
+
+      .slick-track,
+      .slick-list {
+        display: flex;
+        align-items: center;
+      }
+
+      .slick-list {
+        height: 220px;
+      }
+
+      .slick-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 0 10px; // miejsce między slajdami
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: $border-radius-primary;
+        background-color: $color-tertiary-opaque;
+        height: 200px;
+        overflow: hidden;
+        font-size: $dashboard-slider-card-font-size;
+        transition: 0.2s ease;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.8;
+          transform: scale(1.05);
+        }
+      }
+
+      .slick-dots {
+        bottom: -25px;
+      }
+
+      .slick-prev,
+      .slick-next {
+        &:before {
+          font-size: 40px;
+          color: $color-primary;
+        }
+      }
+
+      .slick-prev {
+        left: -60px;
+      }
+
+      .slick-next {
+        right: -40px;
+      }
+    }
   }
+}
+
+.wordset-category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 215px;
 }

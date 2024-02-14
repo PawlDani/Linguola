@@ -20,11 +20,11 @@
     text-align: center;
 
     &.correct {
-      border: 2px solid $color-translation-right; // Indicate correct with a green border
+      border: 2px solid $color-translation-right;
     }
 
     &.incorrect {
-      border: 2px solid $color-translation-wrong; // Indicate incorrect with a red border
+      border: 2px solid $color-translation-wrong;
     }
 
     .term {
@@ -53,7 +53,6 @@
     border: 2px solid $color-secondary;
     font-size: $font-size-translation-term-defintion;
     margin-bottom: 20px;
-    text-align: center;
   }
 
   .button-container {
@@ -62,11 +61,11 @@
     gap: 20px;
 
     .check-button {
-      background-color: $color-translation-check; // Use the known color for the check button
+      background-color: $color-translation-check;
     }
 
     .next-button {
-      background-color: $color-translation-next; // Use the next color for the next button
+      background-color: $color-translation-next;
     }
     button {
       padding: 10px 20px;
@@ -93,7 +92,7 @@
     position: absolute;
     margin-bottom: 10px;
     top: -40px;
-    font-size: 32px;
+    font-size: $font-size-translation-header;
     font-weight: bold;
     text-align: center;
     width: 100%;
@@ -105,5 +104,11 @@
     &.incorrect {
       color: $color-translation-wrong;
     }
+  }
+
+  .error-message {
+    color: $color-translation-wrong;
+    font-size: $font-size-translation-error;
+    margin-bottom: 20px;
   }
 }

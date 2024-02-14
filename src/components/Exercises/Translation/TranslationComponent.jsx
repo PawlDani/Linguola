@@ -5,6 +5,7 @@ const TranslationComponent = ({ terms }) => {
   const [currentCardIndex, setCurrentCardIndex] = useState(0); // Indeks bieżącej karty
   const [userInput, setUserInput] = useState(''); // Wprowadzony przez użytkownika tekst
   const [isCorrect, setIsCorrect] = useState(null); // Stan określający, czy udzielona odpowiedź jest poprawna
+  const [errorMessage, setErrorMessage] = useState(''); // Komunikat o błędzie jak uzytkownik wpisze kolejny raz błędną odpowiedź
 
   useEffect(() => {
     console.log('Translation game initialized with terms:', terms); // log dla inicjalizacji komponentu z terms
@@ -15,6 +16,9 @@ const TranslationComponent = ({ terms }) => {
     const correct = userInput.trim().toLowerCase() === terms[currentCardIndex].definition.toLowerCase();
     setIsCorrect(correct); // Aktualizacja stanu w zależności od poprawności odpowiedzi
     console.log(correct ? 'Correct answer' : 'Incorrect answer');
+    if (!correct) {
+      setErrorMessage('');
+    } // Reset komunikatu o błędzie
   }, [userInput, terms, currentCardIndex]);
 
   // Funkcja wywoływana przy przejściu do następnej karty
@@ -24,9 +28,10 @@ const TranslationComponent = ({ terms }) => {
       setCurrentCardIndex((prevIndex) => (prevIndex + 1) % terms.length); // Przejście do następnej karty
       setUserInput(''); // Czyszczenie pola wprowadzania
       setIsCorrect(null); // Reset stanu dla następnej karty
+      setErrorMessage(''); // Reset komunikatu o błędzie przy przejściu do następnej karty
       console.log('Moving to next card');
     } else {
-      alert('Niepoprawnie, proszę wpisać poprawną odpowiedź, aby kontynuować.'); // Alert, jeśli odpowiedź jest nadal niepoprawna
+      setErrorMessage('Niepoprawnie, proszę wpisać poprawną odpowiedź, aby kontynuować.'); // Alert, jeśli odpowiedź jest nadal niepoprawna
       console.log('Incorrect answer');
     }
   }, [userInput, terms, currentCardIndex]);
@@ -43,8 +48,7 @@ const TranslationComponent = ({ terms }) => {
 
   return (
     <div className="translation-game-container" onKeyDown={handleKeyPress} tabIndex="0">
-      {' '}
-      {/* Umożliwienie obsługi zdarzeń klawiatury */}
+      {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Wyświetlanie komunikatu o błędzie */}
       {isCorrect !== null && (
         <h2 className={`answer-header ${isCorrect ? 'correct' : 'incorrect'}`}>
           {isCorrect ? 'Dobrze' : 'Źle'} {/* Nagłówek informujący o poprawności odpowiedzi */}

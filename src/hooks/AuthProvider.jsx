@@ -1,93 +1,91 @@
 import React, { createContext, useState, useEffect } from 'react';
 import supabase from '/src/api/supabaseClient';
 
-// Kontekst autoryzacji
+// Tworzenie kontekstu autentykacji
 export const AuthContext = createContext();
 
-// Komponent AuthProvider, który dostarcza kontekst autoryzacji
 export const AuthProvider = ({ children }) => {
-  // Stan użytkownika i stan ładowania
+  // Stan użytkownika i informacja o ładowaniu
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Inicjalizacja sesji użytkownika przy ładowaniu komponentu
   useEffect(() => {
-    // Asynchronicznie pobierana sesja i aktualizowany stan użytkownika
     const init = async () => {
-      const { data, error } = await supabase.auth.getSession();
-      if (error) {
-        console.error('Błąd podczas pobierania sesji:', error);
-      } else {
-        // Aktualizowany stan użytkownika danymi z sesji
+      try {
+        // Pobranie aktualnej sesji użytkownika
+        const { data, error } = await supabase.auth.getSession();
+        if (error) throw error;
+        // Ustawienie użytkownika na podstawie sesji
         setUser(data?.session?.user || null);
+      } catch (error) {
+        console.error('Błąd podczas pobierania sesji:', error);
+      } finally {
+        // Zakończenie ładowania niezależnie od wyniku
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     init();
 
-    // Nasłuchiwanie na zmiany stanu autoryzacji
+    // Nasłuchiwanie na zmiany stanu autentykacji
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log(event, session);
       if (event === 'SIGNED_IN') {
+        // Ustawienie użytkownika po zalogowaniu
         setUser(session?.user);
       } else if (event === 'SIGNED_OUT') {
+        // Usunięcie użytkownika po wylogowaniu
         setUser(null);
       }
-      // W przypadku dodatkowych zdarzen, bede dodawac kolejne warunki
     });
 
-    // Funkcja czyszcząca do wyrejestrowania nasłuchiwania na zmiany stanu autoryzacji, gdy komponent jest odmontowywany
+    // Anulowanie nasłuchiwania przy odmontowywaniu komponentu
     return () => {
-      if (authListener?.subscription) {
-        authListener.subscription.unsubscribe();
-      }
+      authListener?.subscription?.unsubscribe();
     };
   }, []);
 
-  // Funkcja logowania
+  // Logowanie użytkownika
   const login = async (email, password) => {
-    setLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) throw error;
+      // Próba logowania z podanymi danymi
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      return { data, error }; // Zwrócenie danych użytkownika lub błędu
     } catch (error) {
       console.error('Błąd logowania:', error);
-      alert(error.error_description || error.message);
-    } finally {
-      setLoading(false);
+      return { error }; // Zwrócenie błędu w przypadku wyjątku
     }
   };
 
-  // Funkcja rejestracji
+  // Rejestracja nowego użytkownika
   const signUp = async (email, password) => {
     setLoading(true);
     try {
-      const { error } = await supabase.auth.signUp({ email, password });
-      if (error) throw error;
-    } catch (error) {
-      console.error('Błąd rejestracji:', error);
-      alert(error.error_description || error.message);
-    } finally {
+      // Próba rejestracji z podanymi danymi
+      const response = await supabase.auth.signUp({ email, password });
       setLoading(false);
+      return response; // Zwrócenie odpowiedzi zawierającej dane użytkownika lub błąd
+    } catch (error) {
+      setLoading(false);
+      return { error }; // Zwrócenie błędu w przypadku wyjątku
     }
   };
 
-  // Funkcja wylogowania
+  // Wylogowanie użytkownika
   const logout = async () => {
     setLoading(true);
     try {
+      // Próba wylogowania
       const { error } = await supabase.auth.signOut();
-      if (error) throw error;
+      if (error) throw new Error(error.message);
+      setLoading(false);
     } catch (error) {
-      console.error('Błąd wylogowania:', error);
-      alert(error.error_description || error.message);
-    } finally {
-      setUser(null);
+      console.error('Błąd wylogowania:', error.message);
       setLoading(false);
     }
   };
 
-  // Zwracanie dostawcy kontekstu autoryzacji z aktualnym stanem użytkownika, funkcjami logowania, rejestracji i wylogowania oraz stanem ładowania
+  // Udostępnienie funkcji i stanu autentykacji dla komponentów podrzędnych
   return (
     <AuthContext.Provider value={{ user, login, signUp, logout, loading }}>{!loading && children}</AuthContext.Provider>
   );

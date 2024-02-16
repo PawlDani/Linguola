@@ -33,7 +33,7 @@ const Dashboard = () => {
         // Mieszanie kategorii
         const shuffledWordsets = uniqueCategories.sort(() => Math.random() - 0.5);
         // Ustawienie 10 pierwszych kategorii do wyświetlenia w stanie komponentu
-        setWordsets(shuffledWordsets.slice(0, 10));
+        setWordsets(shuffledWordsets.slice(0, 20));
       } catch (error) {
         console.error('Error fetching wordsets:', error);
       }
@@ -48,6 +48,10 @@ const Dashboard = () => {
     console.log('Card clicked, navigating to: ', category);
     navigate(`/wordsets/${category}/exercises`);
     // Przekierowanie do wybranego zbioru słówek
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
   const sliderSettings = {
@@ -79,17 +83,17 @@ const Dashboard = () => {
       </div>
       <div className="dashboard_middle">
         <img src="/src/assets/images/woman-teaching.png" alt="user" />
-        <p>Welcome to Linguola!</p>
+        <p>Witaj w Linguola!</p>
       </div>
 
       <div className="dashboard_bottom_header"></div>
       <div className="dashboard_bottom">
-        <h3>Popular Wordsets</h3>
+        <h3>Popularne Zestawy</h3>
         {wordsets.length > 0 ? (
           <Slider {...sliderSettings}>
             {wordsets.map((wordset, index) => (
               <div key={index} className="wordset-slide" onClick={() => handleWordsetClick(wordset.category)}>
-                <div className="wordset-category">{wordset.category}</div>
+                <div className="wordset-category">{capitalizeFirstLetter(wordset.category)}</div>
               </div>
             ))}
           </Slider>

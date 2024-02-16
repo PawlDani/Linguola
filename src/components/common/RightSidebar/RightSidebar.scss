@@ -1,15 +1,162 @@
+@use 'sass:color';
 @import '/src/styles/variables.scss';
 
 .right-sidebar {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   height: 100%;
   min-width: 300px;
   background-color: $color-tertiary-opaque;
   border-top-left-radius: $border-radius-primary;
   border-bottom-left-radius: $border-radius-primary;
   text-align: center;
-  padding: 20px;
+  padding: 40px 30px 0 30px;
+
+  .logout {
+    align-self: flex-start;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    font: 600 $font-size-logout $main-font-family;
+    color: $text-color-sidebar-user;
+    margin-bottom: 120px;
+    text-decoration: none;
+  }
+
+  .user-profile {
+    position: relative;
+    margin-bottom: 20px;
+
+    .user-image {
+      background-color: $color-secondary;
+      color: $color-primary;
+      border-radius: 50%;
+      border: 3px solid $color-primary;
+      width: 110px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: $font-size-user-image;
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .user-name-container {
+      background-color: $color-secondary;
+      border: 3px solid $color-primary;
+      border-radius: $border-radius-sidebar-user-container;
+      padding: 40px 20px;
+      width: 100%;
+      height: 300px;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    .user-name {
+      margin-top: 40px;
+      font: 600 $font-size-default $main-font-family;
+    }
+  }
+
+  .auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: $main-font-family;
+
+    h2 {
+      margin-bottom: 15px;
+      color: $color-primary;
+      font-size: $font-size-login;
+      font-weight: 600;
+    }
+
+    .auth-login-question {
+      p,
+      .register-link {
+        display: block;
+        color: $color-primary;
+        margin-bottom: 8px;
+        font-size: $font-size-default;
+        font-weight: 500;
+      }
+
+      .register-link {
+        margin-top: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        text-decoration: underline;
+        &:hover {
+          color: color.scale($color-primary, $lightness: 10%);
+        }
+      }
+    }
+  }
+
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+
+    .input-group {
+      position: relative;
+      margin-bottom: 10px;
+
+      .icon {
+        position: absolute;
+        left: 20px;
+        top: 45%;
+        transform: translateY(-50%);
+        font-size: 1.3rem;
+        color: $color-primary;
+      }
+
+      input {
+        width: 100%;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+        padding: 10px 10px 10px 50px;
+        font-size: $font-size-input-form;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color: $color-secondary;
+        &:hover {
+          border-color: color.scale(#ccc, $lightness: -10%);
+        }
+      }
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 20px;
+
+      button {
+        background-color: $color-primary;
+        color: $text-color-primary;
+        font-weight: bold;
+        border: none;
+        padding: 10px 0;
+        font-size: $font-size-login-button;
+        border-radius: 20px;
+        width: 70%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        &:hover {
+          background-color: color.scale($color-primary, $lightness: 10%);
+        }
+      }
+    }
+  }
+
+  .error-message {
+    color: $text-color-sidebar-wrong-credentials;
+    margin-top: 15px;
+    font: 500 $font-size-default $main-font-family;
+  }
 }

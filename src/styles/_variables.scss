@@ -38,6 +38,8 @@ $text-color-primary: #dce7f4;
 $text-color-flashcard-button: #ffffff;
 $text-color-exercise-selector-active: #ffffff;
 $text-color-translation-button: #ffffff;
+$text-color-sidebar-user: $color-primary;
+$text-color-sidebar-wrong-credentials: #dc3545;
 
 // Sizes
 
@@ -58,6 +60,12 @@ $font-size-translation-term-defintion: 2rem;
 $font-size-translation-button: 1.2rem;
 $font-size-translation-header: 2rem;
 $font-size-translation-error: 1.25rem;
+$font-size-logout: 1.5rem;
+$font-size-login: 1.7rem;
+$font-size-register: 1.5rem;
+$font-size-user-image: 3em;
+$font-size-input-form: 1rem;
+$font-size-login-button: 1.2rem;
 // Border Radius
 
 $border-radius-primary: 25px;
@@ -67,6 +75,7 @@ $border-radius-flashcards-button: 8px;
 $border-radius-exercise-selector: 20px;
 $border-radius-translation-card: 10px;
 $border-radius-translation-card-button: 8px;
+$border-radius-sidebar-user-container: 40px;
 
 // Border Styles
 

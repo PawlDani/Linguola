@@ -87,7 +87,7 @@ const WordSetsComponent = () => {
   return (
     <div className="word-sets-page">
       <div className="word-sets-header">
-        <h2>Wordsets</h2>
+        <h2>Zestawy Słow</h2>
       </div>
       <div className="word-sets-container">
         {error && <div className="error-message">{error}</div>}

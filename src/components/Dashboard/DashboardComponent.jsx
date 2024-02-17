@@ -17,7 +17,9 @@ const Dashboard = () => {
     // Ustawienie aktualnej daty
     const timer = setInterval(() => {
       const now = new Date();
-      setCurrentDate(`${now.getDate()} ${now.toLocaleString('default', { month: 'short' })} ${now.getFullYear()}`); // Formatowanie daty
+      setCurrentDate(
+        `${now.toLocaleString('pl-PL', { weekday: 'long' })}, ${now.getDate()} ${now.toLocaleString('pl-PL', { month: 'long' })} ${now.getFullYear()}`
+      ); // Formatowanie daty
     }, 1000);
 
     const loadWordsets = async () => {
@@ -78,7 +80,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className="dashboard_top">
-        <h2>Dashboard</h2>
+        <h2>Start</h2>
         <p>{currentDate}</p>
       </div>
       <div className="dashboard_middle">

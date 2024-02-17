@@ -29,6 +29,8 @@
   .user-profile {
     position: relative;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 
     .user-image {
       background-color: $color-secondary;
@@ -48,18 +50,19 @@
     }
 
     .user-name-container {
+      align-self: center;
       background-color: $color-secondary;
       border: 3px solid $color-primary;
       border-radius: $border-radius-sidebar-user-container;
-      padding: 40px 20px;
       width: 100%;
-      height: 300px;
+      height: 200px;
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     }
 
     .user-name {
       margin-top: 40px;
-      font: 600 $font-size-default $main-font-family;
+      font: 600 $font-size-user-name $main-font-family;
+      padding: 10px 15px;
     }
   }
 

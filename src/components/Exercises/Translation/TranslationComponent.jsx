@@ -13,7 +13,7 @@ const TranslationComponent = ({ terms }) => {
 
   // Funkcja wywoływana przy sprawdzaniu odpowiedzi
   const handleCheckAnswer = useCallback(() => {
-    const correct = userInput.trim().toLowerCase() === terms[currentCardIndex].definition.toLowerCase();
+    const correct = userInput.trim().toLowerCase() === terms[currentCardIndex].term.toLowerCase();
     setIsCorrect(correct); // Aktualizacja stanu w zależności od poprawności odpowiedzi
     console.log(correct ? 'Correct answer' : 'Incorrect answer');
     if (!correct) {
@@ -23,7 +23,7 @@ const TranslationComponent = ({ terms }) => {
 
   // Funkcja wywoływana przy przejściu do następnej karty
   const handleNextCard = useCallback(() => {
-    const correct = userInput.trim().toLowerCase() === terms[currentCardIndex].definition.toLowerCase();
+    const correct = userInput.trim().toLowerCase() === terms[currentCardIndex].term.toLowerCase();
     if (correct) {
       setCurrentCardIndex((prevIndex) => (prevIndex + 1) % terms.length); // Przejście do następnej karty
       setUserInput(''); // Czyszczenie pola wprowadzania
@@ -55,13 +55,13 @@ const TranslationComponent = ({ terms }) => {
         </h2>
       )}
       <div className={`translation-card ${isCorrect ? 'correct' : isCorrect === false ? 'incorrect' : ''}`}>
-        <div className="term">{terms[currentCardIndex].term}</div>
+        <div className="term">{terms[currentCardIndex].definition}</div>
         {isCorrect === false && (
           <>
             {' '}
             {/* Wyświetlanie informacji zwrotnej tylko dla niepoprawnych odpowiedzi */}
             <div className="your-answer">Twoja odpowiedź: {userInput}</div>
-            <div className="right-answer">Prawidłowa odpowiedź: {terms[currentCardIndex].definition}</div>
+            <div className="right-answer">Prawidłowa odpowiedź: {terms[currentCardIndex].term}</div>
           </>
         )}
       </div>

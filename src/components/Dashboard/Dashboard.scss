@@ -31,6 +31,9 @@
   .dashboard_middle {
     align-self: center;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 90%;
     height: 15%;
     background-color: $color-tertiary-opaque;
@@ -46,11 +49,9 @@
       z-index: 2;
       position: absolute;
       bottom: -60px;
-      left: 80px;
+      left: 40px;
     }
     p {
-      align-self: center;
-      margin-left: 350px;
       font: 600 $font-size-large $main-font-family;
       color: $color-primary;
     }

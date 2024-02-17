@@ -51,13 +51,13 @@ const FlashcardComponent = ({ terms }) => {
       <div className="card-controls">
         {/* Przyciski do oznaczania karty */}
         <button className="known-button" onClick={() => handleMarkCard('known')}>
-          Known
+          Znam
         </button>
         <button className="revisit-button" onClick={() => handleMarkCard('revisit')}>
-          Revisit
+          Powtórz
         </button>
         <button className="next-button" onClick={handleNextCard}>
-          Next
+          Następna
         </button>
       </div>
     </div>

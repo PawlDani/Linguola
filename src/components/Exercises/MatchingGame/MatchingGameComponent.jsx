@@ -1,30 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import './MatchingGame.scss';
 
-// Komponent gry w dopasowywanie par
+// Komponent Gratulacyjny Modal
+const CongratulationsModal = ({ onClose }) => (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <h2>Gratulacje!</h2>
+      <p>Udało Ci się dopasować wszystkie pary!</p>
+      <p>Przejdź do następnej gry</p>
+      <button onClick={onClose}>Zamknij</button>
+    </div>
+  </div>
+);
+
 const MatchingGameComponent = ({ terms }) => {
-  // Stany przechowujace karty, wybrane karty oraz ilosc dopasowanych par
   const [cards, setCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
   const [matchedPairs, setMatchedPairs] = useState(0);
+  const [showCongratsModal, setShowCongratsModal] = useState(false); // Stan dla modalu gratulacyjnego
+  const totalPairs = terms.length;
 
-  // Efekt inicjalizujacy gre przy zmianie zestawu slow
+  // Efekt inicjalizujący grę
   useEffect(() => {
     initializeGame();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terms]);
 
-  // Funkcja inicjalizujaca gre, przygotowujaca karty, tasujaca je i ustawiajaca stany
+  // Funkcja inicjalizująca grę
   const initializeGame = () => {
     const preparedCards = prepareCards(terms);
     const shuffledCards = shuffleCards(preparedCards);
     setCards(shuffledCards.map((card) => ({ ...card, unmatched: false })));
     setSelectedCards([]);
     setMatchedPairs(0);
-    console.log('MatchingGame initialized with terms:', terms);
+    setShowCongratsModal(false); // Resetowanie stanu modalu
   };
 
-  // Funkcja przygotowująca karty na podstawie zestawu terminów
+  // Przygotowanie kart
   const prepareCards = (terms) => {
     return terms.flatMap((term) => [
       { id: `${term.id}-term`, content: term.term, type: 'term', matched: false },
@@ -32,7 +44,7 @@ const MatchingGameComponent = ({ terms }) => {
     ]);
   };
 
-  // Funkcja tasująca karty
+  // Tasowanie kart
   const shuffleCards = (cards) => {
     let shuffled = [...cards];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -42,10 +54,10 @@ const MatchingGameComponent = ({ terms }) => {
     return shuffled;
   };
 
-  // Funkcja obsługująca kliknięcie karty
+  // Obsługa kliknięcia karty
   const handleCardClick = (cardId) => {
     const newSelectedCard = cards.find((card) => card.id === cardId);
-    if (selectedCards.length === 2 || newSelectedCard.matched) return;
+    if (selectedCards.length === 2 || newSelectedCard.matched || newSelectedCard.unmatched) return;
     if (!selectedCards.includes(newSelectedCard)) {
       const updatedSelectedCards = [...selectedCards, newSelectedCard];
       setSelectedCards(updatedSelectedCards);
@@ -54,36 +66,41 @@ const MatchingGameComponent = ({ terms }) => {
         checkForMatch(updatedSelectedCards);
       }
     }
-    console.log('Card clicked:', newSelectedCard);
   };
 
-  // Funkcja sprawdzająca czy wybrane karty są parą
+  // Sprawdzanie dopasowania
   const checkForMatch = (selectedCards) => {
     const [firstCard, secondCard] = selectedCards;
     if (firstCard.id.split('-')[0] === secondCard.id.split('-')[0]) {
       setMatchedPairs((prev) => prev + 1);
+      if (matchedPairs + 1 === totalPairs) {
+        setShowCongratsModal(true); // Pokazanie modalu gratulacyjnego
+      }
       setCards((prevCards) =>
         prevCards.map((card) =>
           card.id === firstCard.id || card.id === secondCard.id ? { ...card, matched: true } : card
         )
       );
       setSelectedCards([]);
-      console.log('Match found!');
     } else {
       setCards((prevCards) =>
-        prevCards.map((card) => (card === firstCard || card === secondCard ? { ...card, unmatched: true } : card))
+        prevCards.map((card) =>
+          card.id === firstCard.id || card.id === secondCard.id ? { ...card, unmatched: true } : card
+        )
       );
       setTimeout(() => {
         setCards((prevCards) => prevCards.map((card) => ({ ...card, unmatched: false })));
         setSelectedCards([]);
-        console.log('No match found!');
       }, 1000);
     }
   };
 
-  // Renderowanie komponentu z gra
+  // Szerokość paska postępu
+  const progressBarWidth = (matchedPairs / totalPairs) * 100;
+
   return (
     <div className="matching-game-container">
+      {showCongratsModal && <CongratulationsModal onClose={() => setShowCongratsModal(false)} />}
       {cards.map((card) => (
         <div
           key={card.id}
@@ -93,7 +110,9 @@ const MatchingGameComponent = ({ terms }) => {
           <div className="card-content">{card.content}</div>
         </div>
       ))}
-      <div className="matched-pairs-info">Matched Pairs: {matchedPairs}</div>
+      <div className="progress-bar-container">
+        <div className="progress-bar" style={{ width: `${progressBarWidth}%` }}></div>
+      </div>
     </div>
   );
 };

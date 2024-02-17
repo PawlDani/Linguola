@@ -10,7 +10,7 @@ const LeftSidebar = () => {
   // Definicja zakładek w pasku bocznym
   const tabs = [
     { name: 'Start', to: '/', iconClass: 'fa-solid fa-house' },
-    { name: 'Zestawy', to: '/wordsets', iconClass: 'fa-solid fa-folder' }, // Poprawiona ścieżka na małe litery
+    { name: 'Ucz się', to: '/wordsets', iconClass: 'fa-solid fa-folder' }, // Poprawiona ścieżka na małe litery
     { name: 'Postęp', to: '/progress', iconClass: 'fa-solid fa-bars-progress' },
     { name: 'Instrukcja', to: '/howto', iconClass: 'fa-solid fa-compass' },
     // Wiecej zakladek bede dodawal tutaj

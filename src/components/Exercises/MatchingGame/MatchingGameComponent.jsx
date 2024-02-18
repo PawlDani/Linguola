@@ -12,6 +12,7 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
   // Efekt, który inicjalizuje grę po zmianie zestawu terminów
   useEffect(() => {
     initializeGame();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terms]);
 
   // Funkcja inicjalizująca grę - tasowanie kart i resetowanie stanów

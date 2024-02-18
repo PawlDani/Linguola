@@ -1,13 +1,19 @@
 @import '/src/styles/variables.scss';
 @import '/src//components/Exercises/common';
 
+// Mixin dla centrowania flex
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .flashcard-container {
   @extend %game-container;
   perspective: 1000px; // potrzebne do animacji 3D
 
   .flashcard {
-    display: flex;
-    align-items: center;
+    @include flex-center;
     background-color: $color-flashcard-front;
     border-radius: $border-radius-flashcards;
     box-shadow: 8px 8px 8px 8px rgba(0.1, 0.1, 0.1, 0.1);
@@ -27,11 +33,9 @@
     .back {
       position: absolute;
       width: 100%;
-      height: 250px;
+      height: 100%;
       backface-visibility: hidden; // Tylna strona karty ukryta
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flex-center;
       border-radius: $border-radius-flashcards;
 
       &.back {
@@ -59,8 +63,7 @@
     cursor: pointer;
     font-weight: bold;
     font-size: $font-size-flashcard-button;
-    margin-right: 15px; // Miejsce miedzy przyciskami
-    margin-top: 20px; // Miejsce nad przyciskami
+    margin: 20px 15px 0 0;
     transition: background-color 0.2s;
 
     // ostatni przycisk bez margin-right

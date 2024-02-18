@@ -9,13 +9,17 @@ import './Exercise.scss';
 // Komponent obsługujący wybór gry oraz wyświetlanie wybranej gry
 const ExerciseComponent = () => {
   const { category } = useParams(); // Hook useParams do pobrania parametru "category" z adresu URL
+  console.log('Pobrano kategorię z adresu URL:', category);
   const [terms, setTerms] = useState([]); // Stan przechowujący pobrane "terms", początkowo pusta tablica
   const [activeGame, setActiveGame] = useState('flashcards'); // Stan przechowujący aktywną grę, początkowo "flashcards"
+  console.log('Ustawiono początkową grę:', activeGame);
 
   useEffect(() => {
     const loadTerms = async () => {
       // Asynchroniczne ładowanie terminów na podstawie wybranej kategorii
+      console.log('Ładowanie terminów dla kategorii:', category);
       const fetchedTerms = await fetchTermsByCategory(category.toLowerCase());
+      console.log('Pobrano terminy:', fetchedTerms);
       setTerms(fetchedTerms); // Ustawienie pobranych terminów
     };
 
@@ -24,8 +28,12 @@ const ExerciseComponent = () => {
 
   const changeGame = (game) => {
     // Funkcja zmieniająca aktywną grę lub restartująca bieżącą grę
+    console.log('Zmiana gry na:', game);
     setActiveGame(''); // Chwilowe usunięcie aktywnej gry, aby wymusić odświeżenie komponentu
-    setTimeout(() => setActiveGame(game), 0); // Ponowne ustawienie gry
+    setTimeout(() => {
+      console.log('Ponowne ustawienie gry na:', game);
+      setActiveGame(game);
+    }, 0); // Ponowne ustawienie gry
   };
 
   return (

@@ -72,5 +72,23 @@
       font-size: $font-size-modal-button-icon;
       margin-right: 10px;
     }
+
+    .review-button {
+      background-color: $color-modal-restart;
+      border: $border-style-modal-button-restart;
+
+      &:hover {
+        background-color: darken($color-modal-restart, 10%);
+      }
+    }
+
+    .next-game-button {
+      background-color: $color-modal-next;
+      border: $border-style-modal-button-next;
+
+      &:hover {
+        background-color: darken($color-modal-next, 10%);
+      }
+    }
   }
 }

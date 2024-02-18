@@ -12,57 +12,50 @@ const ExerciseComponent = () => {
   const [terms, setTerms] = useState([]); // Stan przechowujący pobrane "terms", początkowo pusta tablica
   const [activeGame, setActiveGame] = useState('flashcards'); // Stan przechowujący aktywną grę, początkowo "flashcards"
 
-  // Ladowanie "terms" na podstawie wybranej kategorii
   useEffect(() => {
     const loadTerms = async () => {
-      // Funkcja asynchroniczna do pobrania "terms" na podstawie wybranej kategorii
-      const fetchedTerms = await fetchTermsByCategory(category.toLowerCase()); // Pobranie "terms" z API na podstawie wybranej kategorii
-      setTerms(fetchedTerms); // Ustawienie pobranych "terms" w stanie
+      // Asynchroniczne ładowanie terminów na podstawie wybranej kategorii
+      const fetchedTerms = await fetchTermsByCategory(category.toLowerCase());
+      setTerms(fetchedTerms); // Ustawienie pobranych terminów
     };
 
-    // Wywołanie funkcji "loadTerms", zależne od zmiany wybranej kategorii
     loadTerms();
   }, [category]);
 
-  useEffect(() => {
-    console.log(`Active Game is now: ${activeGame}`); // Logowanie zmiany aktywnej gry
-  }, [activeGame]);
-
-  // Funkcja obsługująca zmianę wybranej gry
-  const handleGameChange = (game) => {
-    setActiveGame(game); // Aktualizacja stanu "activeGame" na podstawie wybranej gry
+  const changeGame = (game) => {
+    // Funkcja zmieniająca aktywną grę lub restartująca bieżącą grę
+    setActiveGame(''); // Chwilowe usunięcie aktywnej gry, aby wymusić odświeżenie komponentu
+    setTimeout(() => setActiveGame(game), 0); // Ponowne ustawienie gry
   };
 
-  // Renderowanie komponentu
   return (
     <div className="exercise-container">
       <div className="exercise-selector">
+        {/* Przyciski do zmiany aktywnej gry */}
         <button
-          onClick={() => handleGameChange('flashcards')}
+          onClick={() => changeGame('flashcards')}
           className={`exercise-option ${activeGame === 'flashcards' ? 'active' : ''}`}
         >
-          <i className="fa-solid fa-folder"></i>
           Fiszki
         </button>
         <button
-          onClick={() => handleGameChange('matching')}
+          onClick={() => changeGame('matching')}
           className={`exercise-option ${activeGame === 'matching' ? 'active' : ''}`}
         >
-          <i className="fa-solid fa-puzzle-piece"></i>
           Dopasowanie
         </button>
         <button
-          onClick={() => handleGameChange('translation')}
+          onClick={() => changeGame('translation')}
           className={`exercise-option ${activeGame === 'translation' ? 'active' : ''}`}
         >
-          <i className="fa-solid fa-pen-to-square"></i>
           Tłumaczenie
         </button>
       </div>
       <div className="game-container">
-        {activeGame === 'flashcards' && <FlashcardComponent terms={terms} />}
-        {activeGame === 'matching' && <MatchingGameComponent terms={terms} />}
-        {activeGame === 'translation' && <TranslationComponent terms={terms} />}
+        {/* Warunkowe renderowanie komponentów gier w zależności od aktywnej gry */}
+        {activeGame === 'flashcards' && <FlashcardComponent terms={terms} onChangeGame={changeGame} />}
+        {activeGame === 'matching' && <MatchingGameComponent terms={terms} onChangeGame={changeGame} />}
+        {activeGame === 'translation' && <TranslationComponent terms={terms} onChangeGame={changeGame} />}
       </div>
     </div>
   );

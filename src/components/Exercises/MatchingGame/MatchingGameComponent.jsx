@@ -1,48 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import Modal from '/src/components/Exercises/Modal/modal';
 import './MatchingGame.scss';
 
-// Komponent Gratulacyjny Modal
-const CongratulationsModal = ({ onClose }) => (
-  <div className="modal-overlay">
-    <div className="modal-content">
-      <h2>Gratulacje!</h2>
-      <p>Udało Ci się dopasować wszystkie pary!</p>
-      <p>Przejdź do następnej gry</p>
-      <button onClick={onClose}>Zamknij</button>
-    </div>
-  </div>
-);
-
-const MatchingGameComponent = ({ terms }) => {
+const MatchingGameComponent = ({ terms, onChangeGame }) => {
   const [cards, setCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
   const [matchedPairs, setMatchedPairs] = useState(0);
   const [showCongratsModal, setShowCongratsModal] = useState(false); // Stan dla modalu gratulacyjnego
   const totalPairs = terms.length;
 
-  // Efekt inicjalizujący grę
+  // Efekt, który inicjalizuje grę po zmianie zestawu terminów
   useEffect(() => {
     initializeGame();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terms]);
 
-  // Funkcja inicjalizująca grę
+  // Funkcja inicjalizująca grę - tasowanie kart i resetowanie stanów
   const initializeGame = () => {
     const preparedCards = prepareCards(terms);
     const shuffledCards = shuffleCards(preparedCards);
     setCards(shuffledCards.map((card) => ({ ...card, unmatched: false })));
     setSelectedCards([]);
     setMatchedPairs(0);
-    setShowCongratsModal(false); // Resetowanie stanu modalu
+    setShowCongratsModal(false);
   };
 
-  // Przygotowanie kart
-  const prepareCards = (terms) => {
-    return terms.flatMap((term) => [
+  // Przygotowanie kart - tworzenie pary term-definicja dla każdego terminu
+  const prepareCards = (terms) =>
+    terms.flatMap((term) => [
       { id: `${term.id}-term`, content: term.term, type: 'term', matched: false },
       { id: `${term.id}-definition`, content: term.definition, type: 'definition', matched: false },
     ]);
-  };
 
   // Tasowanie kart
   const shuffleCards = (cards) => {
@@ -54,21 +41,20 @@ const MatchingGameComponent = ({ terms }) => {
     return shuffled;
   };
 
-  // Obsługa kliknięcia karty
+  // Obsługa kliknięcia na kartę
   const handleCardClick = (cardId) => {
     const newSelectedCard = cards.find((card) => card.id === cardId);
     if (selectedCards.length === 2 || newSelectedCard.matched || newSelectedCard.unmatched) return;
     if (!selectedCards.includes(newSelectedCard)) {
-      const updatedSelectedCards = [...selectedCards, newSelectedCard];
-      setSelectedCards(updatedSelectedCards);
+      setSelectedCards([...selectedCards, newSelectedCard]);
 
-      if (updatedSelectedCards.length === 2) {
-        checkForMatch(updatedSelectedCards);
+      if (selectedCards.length + 1 === 2) {
+        checkForMatch([...selectedCards, newSelectedCard]);
       }
     }
   };
 
-  // Sprawdzanie dopasowania
+  // Sprawdzenie, czy wybrane karty tworzą parę
   const checkForMatch = (selectedCards) => {
     const [firstCard, secondCard] = selectedCards;
     if (firstCard.id.split('-')[0] === secondCard.id.split('-')[0]) {
@@ -95,12 +81,39 @@ const MatchingGameComponent = ({ terms }) => {
     }
   };
 
-  // Szerokość paska postępu
+  // Akcje dla modalu końca gry
+  const gameEndActions = [
+    {
+      label: 'Rozpocznij ponownie',
+      className: 'restart-button',
+      onClick: () => {
+        onChangeGame('matching');
+      },
+      icon: 'fa-solid fa-repeat',
+    },
+    {
+      label: 'Przejdź do Tłumaczenia',
+      className: 'switch-button',
+      onClick: () => {
+        onChangeGame('translation');
+      },
+      icon: 'fa-solid fa-forward-step',
+    },
+  ];
+
+  // Obliczenie szerokości paska postępu
   const progressBarWidth = (matchedPairs / totalPairs) * 100;
 
   return (
     <div className="matching-game-container">
-      {showCongratsModal && <CongratulationsModal onClose={() => setShowCongratsModal(false)} />}
+      {showCongratsModal && (
+        <Modal
+          title="Gratulacje!"
+          messageOne="Udało Ci się dopasować wszystkie pary!"
+          messageTwo="Powtórz lub przejdź do następnego ćwiczenia."
+          actions={gameEndActions}
+        />
+      )}
       {cards.map((card) => (
         <div
           key={card.id}

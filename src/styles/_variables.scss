@@ -32,6 +32,14 @@ $color-translation-next: #007bff;
 $color-matching-game-selected: #007bff;
 $color-matching-game-matched: #28a745;
 $color-matching-game-unmatched: #dc3545;
+$color-modal-next: #007bff;
+$color-modal-restart: #28a745;
+
+// Border Styles
+
+$border-style-matching-game-card: 3px solid #ccc;
+$border-style-modal-button-next: 3px solid #007bff;
+$border-style-modal-button-restart: 3px solid #28a745;
 
 // Text colors
 $text-color-primary: #dce7f4;
@@ -68,6 +76,10 @@ $font-size-user-image: 3em;
 $font-size-input-form: 1rem;
 $font-size-login-button: 1.2rem;
 $font-size-user-name: 1rem;
+$font-size-modal-title: 2rem;
+$font-size-modal-text: 1.5rem;
+$font-size-modal-button: 1.2rem;
+$font-size-modal-button-icon: 1.4rem;
 
 // Border Radius
 
@@ -79,10 +91,6 @@ $border-radius-exercise-selector: 20px;
 $border-radius-translation-card: 10px;
 $border-radius-translation-card-button: 8px;
 $border-radius-sidebar-user-container: 40px;
-
-// Border Styles
-
-$border-style-matching-game-card: 3px solid #ccc;
 
 // Font Families
 

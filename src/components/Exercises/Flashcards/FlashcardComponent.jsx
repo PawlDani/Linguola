@@ -19,6 +19,7 @@ const FlashcardComponent = ({ terms, onChangeGame }) => {
     if (!localStorage.getItem('flashcardsCompleted')) {
       checkCompletion(savedStatus);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terms]);
 
   const checkCompletion = (status) => {

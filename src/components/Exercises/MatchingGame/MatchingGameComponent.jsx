@@ -83,7 +83,7 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
   };
 
   // Akcje dla modalu końca gry
-  const gameEndActions = [
+  const modalActions = [
     {
       label: 'Rozpocznij ponownie',
       className: 'restart-button',
@@ -111,8 +111,8 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
         <Modal
           title="Gratulacje!"
           messageOne="Udało Ci się dopasować wszystkie pary!"
-          messageTwo="Powtórz lub przejdź do następnego ćwiczenia."
-          actions={gameEndActions}
+          messageTwo="Co chciałbyś teraz zrobić?"
+          actions={modalActions}
         />
       )}
       {cards.map((card) => (

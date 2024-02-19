@@ -85,7 +85,11 @@ const Dashboard = () => {
       </div>
       <div className="dashboard_middle">
         <img src="/src/assets/images/woman-teaching.png" alt="user" />
-        <p>Witaj w Linguola!</p>
+        <div className="dashboard_middle_text">
+          <h1>Witaj w Linguola!</h1>
+          <h3>Wybierz zestaw słówek, aby rozpocząć naukę.</h3>
+          <h3>Pamiętaj, że regularność to klucz do nauki języka</h3>
+        </div>
       </div>
 
       <div className="dashboard_bottom_header"></div>

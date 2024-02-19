@@ -6,9 +6,9 @@
   @extend %game-container;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  gap: 25px;
   position: relative;
-
+  margin-top: 100px;
   .card {
     height: 100px;
     width: 220px;

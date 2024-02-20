@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { fetchWordsets } from '/src/api/api.js';
+import dashboardImage from '/src/assets/images/woman-teaching.png';
 import './Dashboard.scss';
 
 // Komponent strony głównej
@@ -84,7 +84,7 @@ const Dashboard = () => {
         <p>{currentDate}</p>
       </div>
       <div className="dashboard_middle">
-        <img src="/src/assets/images/woman-teaching.png" alt="user" />
+        <img src={dashboardImage} alt="user" />
         <div className="dashboard_middle_text">
           <h1>Witaj w Linguola!</h1>
           <h3>Wybierz zestaw słówek, aby rozpocząć naukę.</h3>

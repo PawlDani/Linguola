@@ -15,6 +15,7 @@ const TranslationComponent = ({ terms, onChangeGame }) => {
     console.log('Translation game initialized with terms:', terms); // log dla inicjalizacji komponentu z terms
     const savedState = JSON.parse(localStorage.getItem('translationGameState')); // Pobranie statusu gry z localStorage
     console.log('Saved state:', savedState);
+
     if (savedState) {
       setCurrentCardIndex(savedState.currentCardIndex); // Przywrócenie stanu gry z localStorage
       console.log('Current card index:', savedState.currentCardIndex);

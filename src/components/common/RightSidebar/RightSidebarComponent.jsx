@@ -52,27 +52,23 @@ const RightSidebar = () => {
     }
 
     try {
-      let response = null;
       if (isLoginActive) {
-        console.log('Loggin in...');
-        response = await login(email, password);
+        console.log('Logging in...');
+        await login(email, password); // Proces logowania
       } else {
         console.log('Signing up...');
-        response = await signUp(email, password, username); // Dodanie username do funkcji signUp
+        const response = await signUp(username, email, password); // Proces rejestracji, dodanie username do funkcji signUp
+        if (response && response.error) throw response.error;
       }
-
-      if (response.error) {
-        console.log('Error logging in:');
-        setErrorMessage('Błędny adres email lub hasło'); // Wyświetlanie błędu w przypadku niepowodzenia logowania lub rejestracji (zwróconego przez hook useAuth)
-      } else {
-        console.log('Logged in');
-        setEmail('');
-        setPassword('');
-        // Użytkownik zalogowany, nie trzeba nic robić, ponieważ hook useAuth zaktualizuje stan aplikacji
-      }
+      // Jeśli nie ma błędów, czyszczenie formularza
+      console.log('Success');
+      setEmail('');
+      setPassword('');
+      setUsername(''); // Czyszczenie stanu username w przypadku rejestracji
     } catch (error) {
-      console.log('Unexpected error:', error);
-      setErrorMessage('Wystąpił nieoczekiwany błąd. Proszę spróbować później.');
+      console.log('Error during authentication:', error);
+      setErrorMessage(error.message);
+      console.log('Error message set in state:', error.message); // Wyświetlanie szczegółowej wiadomości błędu
     }
   };
 

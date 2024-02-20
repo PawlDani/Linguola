@@ -1,1 +1,113 @@
 @import '/src/styles/variables.scss';
+
+.howTo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  @media (min-width: 2210px) {
+    width: 80%;
+  }
+
+  .howTo_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 15%;
+    background-color: $color-tertiary-opaque;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    border-radius: $border-radius-primary;
+    z-index: 1;
+    position: relative;
+    margin-top: 40px;
+
+    img {
+      height: 330px;
+      z-index: 2;
+      position: absolute;
+      top: -100px;
+
+      @media (min-width: 2210px) {
+        height: 430px;
+      }
+    }
+
+    .howTo_header_text {
+      h2 {
+        font: 600 $font-size-how-to-header $main-font-family;
+        color: $color-primary;
+      }
+    }
+  }
+
+  // New SVG Section Styles
+  .howTo_section {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    flex-grow: 1;
+
+    .howTo_container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 100px;
+
+      .howTo_item {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+        width: 270px;
+
+        @media (min-width: 2210px) {
+          width: 350px;
+        }
+
+        img {
+          align-self: center;
+          height: 100px;
+          width: auto;
+
+          @media (min-width: 2210px) {
+            height: 120px;
+          }
+        }
+
+        p {
+          height: 260px;
+          width: 100%;
+          font: 500 $font-size-how-to-text $main-font-family;
+          color: $color-primary;
+        }
+      }
+
+      .arrow {
+        flex: 0 0 30px;
+        height: 5px;
+        border-radius: 5px;
+        background-color: $color-primary;
+        position: relative;
+        margin: 0 20px;
+
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          top: -2px;
+          right: -10px;
+          transform: rotate(270deg);
+          border-radius: 5px;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-top: 10px solid $color-primary;
+        }
+      }
+    }
+  }
+}

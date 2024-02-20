@@ -14,20 +14,26 @@ const TranslationComponent = ({ terms, onChangeGame }) => {
   useEffect(() => {
     console.log('Translation game initialized with terms:', terms); // log dla inicjalizacji komponentu z terms
     const savedState = JSON.parse(localStorage.getItem('translationGameState')); // Pobranie statusu gry z localStorage
+    console.log('Saved state:', savedState);
     if (savedState) {
       setCurrentCardIndex(savedState.currentCardIndex); // Przywrócenie stanu gry z localStorage
+      console.log('Current card index:', savedState.currentCardIndex);
       setCorrectAnswersCount(savedState.correctAnswersCount);
+      console.log('Correct answers count:', savedState.correctAnswersCount);
       setShowModal(savedState.correctAnswersCount === terms.length); // Pokaż modal, jeśli wszystkie terminy są zakończone
+      console.log('Show modal:', savedState.correctAnswersCount === terms.length);
     }
   }, [terms]);
 
   const saveGameState = useCallback(() => {
     const gameState = { currentCardIndex, correctAnswersCount }; // Zapisanie stanu gry do localStorage
     localStorage.setItem('translationGameState', JSON.stringify(gameState));
+    console.log('Game state saved:', gameState);
   }, [currentCardIndex, correctAnswersCount]);
 
   const clearGameState = () => {
     localStorage.removeItem('translationGameState'); // Usunięcie stanu gry z localStorage
+    console.log('Game state cleared');
   };
 
   // Funkcja wywoływana przy sprawdzaniu odpowiedzi
@@ -54,13 +60,13 @@ const TranslationComponent = ({ terms, onChangeGame }) => {
       setUserInput(''); // Czyszczenie pola wprowadzania
       setIsCorrect(null); // Reset stanu dla następnej karty
       setErrorMessage(''); // Reset komunikatu o błędzie przy przejściu do następnej karty
-      console.log('Przejście do następnej karty');
+      console.log('Moving to next card:', currentCardIndex + 1);
 
       // Zapisanie stanu gry do localStorage po przejściu do następnej karty
       saveGameState();
     } else {
-      setErrorMessage('Niepoprawnie, proszę wpisać poprawną odpowiedź, aby kontynuować.'); // Alert, jeśli odpowiedź jest nadal niepoprawna
-      console.log('Niepoprawna odpowiedź');
+      setErrorMessage('Niepoprawnie, proszę wpisać poprawną odpowiedź, aby kontynuować.'); // Komunikat o błędzie przy niepoprawnej odpowiedzi (nie można przejść dalej)
+      console.log('Incorrect answer');
     }
   }, [userInput, terms, currentCardIndex, correctAnswersCount, saveGameState]);
 
@@ -82,11 +88,11 @@ const TranslationComponent = ({ terms, onChangeGame }) => {
       label: 'Rozpocznij ponownie',
       className: 'restart-button',
       onClick: () => {
-        clearGameState(); // Clear the saved game state
-        setCorrectAnswersCount(0); // Reset correct answers count
-        setCurrentCardIndex(0); // Reset current card index
-        setShowModal(false); // Close the modal
-        onChangeGame('translation'); // Trigger the game to restart
+        clearGameState(); // Czyszczenie stanu gry z localStorage
+        setCorrectAnswersCount(0); // Reset liczby poprawnych odpowiedzi
+        setCurrentCardIndex(0); // Reset indeksu bieżącej karty
+        setShowModal(false); // Ukrycie modalu
+        onChangeGame('translation'); // Restart gry
       },
       icon: 'fa-solid fa-repeat',
     },

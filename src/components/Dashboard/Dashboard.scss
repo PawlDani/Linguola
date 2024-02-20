@@ -8,6 +8,9 @@
   width: 100%;
   background-color: $color-secondary;
 
+  @media (min-width: 2210px) {
+    width: 90%;
+  }
   .dashboard_top {
     display: flex;
     align-self: center;
@@ -17,13 +20,13 @@
     margin-top: 20px;
 
     h2 {
-      font: 600 $page-title-font-size $main-font-family;
+      font: 600 $font-size-page-title $main-font-family;
       color: $color-primary;
       text-transform: uppercase;
     }
 
     p {
-      font: 500 $page-time-font-size $main-font-family;
+      font: 500 $font-size-page-time $main-font-family;
       color: $color-tertiary;
     }
   }
@@ -82,11 +85,31 @@
     margin-bottom: 60px;
 
     @media (min-width: 2180px) {
-      width: 1620px;
+      width: 1460px;
+    }
+
+    @media (max-width: 2210px) {
+      width: 1280px;
+    }
+
+    @media (max-width: 2030px) {
+      width: 1180px;
+    }
+
+    @media (max-width: 1930px) {
+      width: 1060px;
+    }
+
+    @media (max-width: 1810px) {
+      width: 980px;
+    }
+
+    @media (max-width: 1730px) {
+      width: 880px;
     }
 
     h3 {
-      font: 600 $dashboard-slider-font-size $main-font-family;
+      font: 600 $font-size-dashboard-slider $main-font-family;
       color: $color-primary;
       margin-bottom: 20px;
     }
@@ -116,8 +139,8 @@
         background-color: $color-tertiary-opaque;
         height: 200px;
         overflow: hidden;
-        font-size: $dashboard-slider-card-font-size;
-        transition: 0.2s ease;
+        font-size: $font-size-dashboard-slider-card;
+        transition: 0.3s;
         cursor: pointer;
 
         &:hover {

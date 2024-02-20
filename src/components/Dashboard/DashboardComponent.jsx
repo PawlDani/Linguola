@@ -70,7 +70,7 @@ const Dashboard = () => {
       {
         breakpoint: 2180,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 5,
           slidesToScroll: 2,
         },
       },

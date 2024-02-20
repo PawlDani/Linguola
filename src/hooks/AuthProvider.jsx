@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
         // Ustawienie użytkownika na podstawie sesji
         setUser(data?.session?.user || null);
       } catch (error) {
-        console.error('Błąd podczas pobierania sesji:', error);
+        console.error('Error getting user session:', error.message);
       } finally {
         // Zakończenie ładowania niezależnie od wyniku
         setLoading(false);
@@ -52,17 +52,17 @@ export const AuthProvider = ({ children }) => {
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       return { data, error }; // Zwrócenie danych użytkownika lub błędu
     } catch (error) {
-      console.error('Błąd logowania:', error);
+      console.error('Error logging out:', error);
       return { error }; // Zwrócenie błędu w przypadku wyjątku
     }
   };
 
   // Rejestracja nowego użytkownika
-  const signUp = async (email, password) => {
+  const signUp = async (email, password, username) => {
     setLoading(true);
     try {
       // Próba rejestracji z podanymi danymi
-      const response = await supabase.auth.signUp({ email, password });
+      const response = await supabase.auth.signUp({ email, password, options: { data: { username } } });
       setLoading(false);
       return response; // Zwrócenie odpowiedzi zawierającej dane użytkownika lub błąd
     } catch (error) {
@@ -78,9 +78,10 @@ export const AuthProvider = ({ children }) => {
       // Próba wylogowania
       const { error } = await supabase.auth.signOut();
       if (error) throw new Error(error.message);
+      console.log('Logged out');
       setLoading(false);
     } catch (error) {
-      console.error('Błąd wylogowania:', error.message);
+      console.error('Error while logging out:', error.message);
       setLoading(false);
     }
   };

@@ -12,13 +12,16 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
   // Efekt, który inicjalizuje grę po zmianie zestawu terminów
   useEffect(() => {
     initializeGame();
+    console.log('MatchingGame initialized with terms:', terms);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terms]);
 
   // Funkcja inicjalizująca grę - tasowanie kart i resetowanie stanów
   const initializeGame = () => {
     const preparedCards = prepareCards(terms);
+    console.log('Cards prepared:', cards);
     const shuffledCards = shuffleCards(preparedCards);
+    console.log('Cards shuffled:', cards);
     setCards(shuffledCards.map((card) => ({ ...card, unmatched: false })));
     setSelectedCards([]);
     setMatchedPairs(0);
@@ -48,7 +51,7 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
     if (selectedCards.length === 2 || newSelectedCard.matched || newSelectedCard.unmatched) return;
     if (!selectedCards.includes(newSelectedCard)) {
       setSelectedCards([...selectedCards, newSelectedCard]);
-
+      console.log('Card selected:', newSelectedCard);
       if (selectedCards.length + 1 === 2) {
         checkForMatch([...selectedCards, newSelectedCard]);
       }
@@ -59,6 +62,7 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
   const checkForMatch = (selectedCards) => {
     const [firstCard, secondCard] = selectedCards;
     if (firstCard.id.split('-')[0] === secondCard.id.split('-')[0]) {
+      console.log('Match found:', firstCard, secondCard);
       setMatchedPairs((prev) => prev + 1);
       if (matchedPairs + 1 === totalPairs) {
         setShowCongratsModal(true); // Pokazanie modalu gratulacyjnego
@@ -70,6 +74,7 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
       );
       setSelectedCards([]);
     } else {
+      console.log('No match:', firstCard, secondCard);
       setCards((prevCards) =>
         prevCards.map((card) =>
           card.id === firstCard.id || card.id === secondCard.id ? { ...card, unmatched: true } : card

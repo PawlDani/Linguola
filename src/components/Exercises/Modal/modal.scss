@@ -55,7 +55,7 @@
       border: $border-style-modal-button-restart;
 
       &:hover {
-        background-color: darken($color-modal-restart, 10%);
+        background-color: color.scale($color-modal-restart, $lightness: -10%);
       }
     }
 
@@ -64,7 +64,7 @@
       border: $border-style-modal-button-next;
 
       &:hover {
-        background-color: darken($color-modal-next, 10%);
+        background-color: color.scale($color-modal-next, $lightness: -10%);
       }
     }
 
@@ -78,7 +78,7 @@
       border: $border-style-modal-button-restart;
 
       &:hover {
-        background-color: darken($color-modal-restart, 10%);
+        background-color: color.scale($color-modal-restart, $lightness: -10%);
       }
     }
 
@@ -87,7 +87,7 @@
       border: $border-style-modal-button-next;
 
       &:hover {
-        background-color: darken($color-modal-next, 10%);
+        background-color: color.scale($color-modal-next, $lightness: -10%);
       }
     }
   }

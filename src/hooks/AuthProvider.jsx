@@ -1,11 +1,24 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import supabase from '/src/api/supabaseClient';
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
+// Mapowanie błędów na polskie wiadomości
+const getPolishErrorMessage = (error) => {
+  const messageMap = {
+    'Invalid login credentials': 'Błędny adres e-mail lub hasło.',
+    'User already registered': 'Użytkownik już istnieje.',
+  };
+
+  // Jezeli nie ma przypisanego błędu, zwróć domyślną wiadomość
+  return messageMap[error.message] || 'Wystąpił nieoczekiwany błąd';
+};
+
+// Provider autentykacji
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  // Pobranie sesji użytkownika
   useEffect(() => {
     const session = supabase.auth.getSession();
     setUser(session?.user || null);
@@ -19,31 +32,42 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
+  // Rejestracja użytkownika
   const signUp = async (username, email, password) => {
-    const { error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-      options: {
-        data: { username: username },
-      },
-    });
+    try {
+      const { error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: { username: username },
+        },
+      });
 
-    if (error) {
-      throw error;
+      if (error) throw error;
+    } catch (error) {
+      throw new Error(getPolishErrorMessage(error));
     }
   };
 
+  // Logowanie użytkownika
   const login = async (email, password) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) {
-      throw error;
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+      if (error) throw error;
+    } catch (error) {
+      throw new Error(getPolishErrorMessage(error));
     }
   };
 
+  // Wylogowanie użytkownika
   const logout = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      throw error;
+    try {
+      const { error } = await supabase.auth.signOut();
+
+      if (error) throw error;
+    } catch (error) {
+      throw new Error(getPolishErrorMessage(error));
     }
   };
 
@@ -52,4 +76,5 @@ export const AuthProvider = ({ children }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export default AuthProvider;
+// eslint-disable-next-line react-refresh/only-export-components
+export const useAuth = () => useContext(AuthContext);

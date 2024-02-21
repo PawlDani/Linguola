@@ -22,14 +22,14 @@ const ExerciseComponent = () => {
     loadTerms();
   }, [category]);
 
+  // Funkcja zmieniająca aktywną grę lub restartująca bieżącą grę
   const changeGame = (game) => {
-    // Funkcja zmieniająca aktywną grę lub restartująca bieżącą grę
     console.log('Changing game to:', game);
     setActiveGame(''); // Chwilowe usunięcie aktywnej gry, aby wymusić odświeżenie komponentu
     setTimeout(() => {
       console.log('Setting active game:', game);
-      setActiveGame(game);
-    }, 0); // Ponowne ustawienie gry
+      setActiveGame(game); // Ponowne ustawienie gry
+    }, 0);
   };
 
   return (
@@ -60,9 +60,13 @@ const ExerciseComponent = () => {
       </div>
       <div className="game-container">
         {/* Warunkowe renderowanie komponentów gier w zależności od aktywnej gry */}
-        {activeGame === 'flashcards' && <FlashcardComponent terms={terms} onChangeGame={changeGame} />}
+        {activeGame === 'flashcards' && (
+          <FlashcardComponent terms={terms} onChangeGame={changeGame} category={category} />
+        )}
         {activeGame === 'matching' && <MatchingGameComponent terms={terms} onChangeGame={changeGame} />}
-        {activeGame === 'translation' && <TranslationComponent terms={terms} onChangeGame={changeGame} />}
+        {activeGame === 'translation' && (
+          <TranslationComponent terms={terms} onChangeGame={changeGame} category={category} />
+        )}
       </div>
     </div>
   );

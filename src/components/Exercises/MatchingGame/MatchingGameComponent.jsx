@@ -6,7 +6,7 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
   const [cards, setCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
   const [matchedPairs, setMatchedPairs] = useState(0);
-  const [showCongratsModal, setShowCongratsModal] = useState(false); // Stan dla modalu gratulacyjnego
+  const [showModal, setShowModal] = useState(false);
   const totalPairs = terms.length;
 
   // Efekt, który inicjalizuje grę po zmianie zestawu terminów
@@ -19,13 +19,11 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
   // Funkcja inicjalizująca grę - tasowanie kart i resetowanie stanów
   const initializeGame = () => {
     const preparedCards = prepareCards(terms);
-    console.log('Cards prepared:', cards);
     const shuffledCards = shuffleCards(preparedCards);
-    console.log('Cards shuffled:', cards);
     setCards(shuffledCards.map((card) => ({ ...card, unmatched: false })));
     setSelectedCards([]);
     setMatchedPairs(0);
-    setShowCongratsModal(false);
+    setShowModal(false);
   };
 
   // Przygotowanie kart - tworzenie pary term-definicja dla każdego terminu
@@ -35,23 +33,30 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
       { id: `${term.id}-definition`, content: term.definition, type: 'definition', matched: false },
     ]);
 
+  console.log('Cards prepared:', cards);
+
   // Tasowanie kart
   const shuffleCards = (cards) => {
     let shuffled = [...cards];
+
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
   };
+  console.log('Cards shuffled:', cards);
 
   // Obsługa kliknięcia na kartę
   const handleCardClick = (cardId) => {
     const newSelectedCard = cards.find((card) => card.id === cardId);
+
     if (selectedCards.length === 2 || newSelectedCard.matched || newSelectedCard.unmatched) return;
+
     if (!selectedCards.includes(newSelectedCard)) {
       setSelectedCards([...selectedCards, newSelectedCard]);
       console.log('Card selected:', newSelectedCard);
+
       if (selectedCards.length + 1 === 2) {
         checkForMatch([...selectedCards, newSelectedCard]);
       }
@@ -61,17 +66,21 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
   // Sprawdzenie, czy wybrane karty tworzą parę
   const checkForMatch = (selectedCards) => {
     const [firstCard, secondCard] = selectedCards;
+
     if (firstCard.id.split('-')[0] === secondCard.id.split('-')[0]) {
       console.log('Match found:', firstCard, secondCard);
       setMatchedPairs((prev) => prev + 1);
+
       if (matchedPairs + 1 === totalPairs) {
-        setShowCongratsModal(true); // Pokazanie modalu gratulacyjnego
+        setShowModal(true); // Pokazanie modalu gratulacyjnego
       }
+
       setCards((prevCards) =>
         prevCards.map((card) =>
           card.id === firstCard.id || card.id === secondCard.id ? { ...card, matched: true } : card
         )
       );
+
       setSelectedCards([]);
     } else {
       console.log('No match:', firstCard, secondCard);
@@ -80,6 +89,7 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
           card.id === firstCard.id || card.id === secondCard.id ? { ...card, unmatched: true } : card
         )
       );
+
       setTimeout(() => {
         setCards((prevCards) => prevCards.map((card) => ({ ...card, unmatched: false })));
         setSelectedCards([]);
@@ -112,7 +122,7 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
 
   return (
     <div className="matching-game-container">
-      {showCongratsModal && (
+      {showModal && (
         <Modal
           title="Gratulacje!"
           messageOne="Udało Ci się dopasować wszystkie pary!"

@@ -1,30 +1,26 @@
 import React, { useState } from 'react';
-import { useAuth } from '/src/hooks/useAuth';
+import { useAuth } from '/src/hooks/AuthProvider';
 import './RightSidebar.scss';
 
 const RightSidebar = () => {
-  // Hooka useAuth do zarządzania autentykacją
-  const { user, login, signUp, logout } = useAuth();
-  // Stan lokalny dla emaila, hasła, aktywnej formy (logowanie/rejestracja) i wiadomości o błędach
+  const { user, login, signUp, logout } = useAuth(); // Hook autentykacji
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoginActive, setIsLoginActive] = useState(true); // True dla logowania, false dla rejestracji
   const [errorMessage, setErrorMessage] = useState('');
-  const [username, setUsername] = useState(''); // nowa zmienna stanu dla nazwy użytkownika
+  const [username, setUsername] = useState('');
 
-  // Walidacja emaila
+  // Walidacje pól formularza
   const validateEmail = (email) => {
     const re =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   };
 
-  // Walidacja długości hasła
   const validatePassword = (password) => {
     return password.length >= 6;
   };
 
-  // Walidacja nazyw użytkownika
   const validateUsername = (username) => {
     return username.length <= 12 && username.length > 0;
   };
@@ -35,6 +31,7 @@ const RightSidebar = () => {
     console.log('Handling auth action...');
     setErrorMessage(''); // Czyszczenie poprzednich wiadomości o błędach
 
+    // Walidacja pól formularza przed wysłaniem
     if (!validateEmail(email)) {
       console.log('Wrong email');
       setErrorMessage('Nieprawidłowy email');
@@ -57,18 +54,19 @@ const RightSidebar = () => {
         await login(email, password); // Proces logowania
       } else {
         console.log('Signing up...');
-        const response = await signUp(username, email, password); // Proces rejestracji, dodanie username do funkcji signUp
+        const response = await signUp(username, email, password); // Proces rejestracji
         if (response && response.error) throw response.error;
       }
+
       // Jeśli nie ma błędów, czyszczenie formularza
       console.log('Success');
       setEmail('');
       setPassword('');
-      setUsername(''); // Czyszczenie stanu username w przypadku rejestracji
+      setUsername('');
     } catch (error) {
       console.log('Error during authentication:', error);
-      setErrorMessage(error.message);
-      console.log('Error message set in state:', error.message); // Wyświetlanie szczegółowej wiadomości błędu
+      setErrorMessage(error.message); // Ustawienie wiadomości błędu w stanie
+      console.log('Error message set in state:', error.message);
     }
   };
 

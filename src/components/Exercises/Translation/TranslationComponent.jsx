@@ -3,49 +3,48 @@ import { useNavigate } from 'react-router-dom';
 import Modal from '/src/components/Exercises/Modal/modal';
 import './Translation.scss';
 
-const TranslationComponent = ({ terms, onChangeGame }) => {
-  const [currentCardIndex, setCurrentCardIndex] = useState(0); // Indeks bieżącej karty
-  const [userInput, setUserInput] = useState(''); // Wprowadzony przez użytkownika tekst
-  const [isCorrect, setIsCorrect] = useState(null); // Stan określający, czy udzielona odpowiedź jest poprawna
-  const [errorMessage, setErrorMessage] = useState(''); // Komunikat o błędzie jak uzytkownik wpisze kolejny raz błędną odpowiedź
-  const [correctAnswersCount, setCorrectAnswersCount] = useState(0); // New state variable for tracking correct answers
-  const [showModal, setShowModal] = useState(false); // Modal pokazujący się po poprawnym ukończeniu gry
+const TranslationComponent = ({ terms, onChangeGame, category }) => {
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [userInput, setUserInput] = useState('');
+  const [isCorrect, setIsCorrect] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+
+  // Definicja klucza stanu gry dla danej kategorii
+  const gameStateKey = `translationGameState-${category}`;
 
   useEffect(() => {
-    console.log('Translation game initialized with terms:', terms); // log dla inicjalizacji komponentu z terms
-    const savedState = JSON.parse(localStorage.getItem('translationGameState')); // Pobranie statusu gry z localStorage
-    console.log('Saved state:', savedState);
-
+    // Pobranie stanu gry z localStorage
+    const savedState = JSON.parse(localStorage.getItem(gameStateKey));
     if (savedState) {
-      setCurrentCardIndex(savedState.currentCardIndex); // Przywrócenie stanu gry z localStorage
-      console.log('Current card index:', savedState.currentCardIndex);
+      setCurrentCardIndex(savedState.currentCardIndex);
       setCorrectAnswersCount(savedState.correctAnswersCount);
-      console.log('Correct answers count:', savedState.correctAnswersCount);
-      setShowModal(savedState.correctAnswersCount === terms.length); // Pokaż modal, jeśli wszystkie terminy są zakończone
-      console.log('Show modal:', savedState.correctAnswersCount === terms.length);
+      setShowModal(savedState.correctAnswersCount === terms.length);
     }
-  }, [terms]);
+  }, [terms, category, gameStateKey]);
 
+  // Zapisanie stanu gry do localStorage
   const saveGameState = useCallback(() => {
-    const gameState = { currentCardIndex, correctAnswersCount }; // Zapisanie stanu gry do localStorage
-    localStorage.setItem('translationGameState', JSON.stringify(gameState));
-    console.log('Game state saved:', gameState);
-  }, [currentCardIndex, correctAnswersCount]);
+    const gameState = { currentCardIndex, correctAnswersCount };
+    localStorage.setItem(gameStateKey, JSON.stringify(gameState));
+  }, [currentCardIndex, correctAnswersCount, gameStateKey]);
 
-  const clearGameState = () => {
-    localStorage.removeItem('translationGameState'); // Usunięcie stanu gry z localStorage
-    console.log('Game state cleared');
-  };
+  // Czyszczenie stanu gry z localStorage
+  const clearGameState = useCallback(() => {
+    localStorage.removeItem(gameStateKey);
+  }, [gameStateKey]);
 
   // Funkcja wywoływana przy sprawdzaniu odpowiedzi
   const handleCheckAnswer = useCallback(() => {
     const correct = userInput.trim().toLowerCase() === terms[currentCardIndex].term.toLowerCase();
-    setIsCorrect(correct); // Aktualizacja stanu w zależności od poprawności odpowiedzi
+    setIsCorrect(correct); // Ustawienie stanu poprawności odpowiedzi
     console.log(correct ? 'Correct answer' : 'Incorrect answer');
-    if (!correct) {
+    if (correct) {
+      saveGameState(); // Zapisanie stanu gry do localStorage po poprawnej odpowiedzi
+    } else {
       setErrorMessage('');
-      saveGameState(); // Zapisanie stanu gry do localStorage po sprawdzeniu odpowiedzi
-    } // Reset komunikatu o błędzie
+    }
   }, [userInput, terms, currentCardIndex, saveGameState]);
 
   // Funkcja wywoływana przy przejściu do następnej karty
@@ -63,8 +62,7 @@ const TranslationComponent = ({ terms, onChangeGame }) => {
       setErrorMessage(''); // Reset komunikatu o błędzie przy przejściu do następnej karty
       console.log('Moving to next card:', currentCardIndex + 1);
 
-      // Zapisanie stanu gry do localStorage po przejściu do następnej karty
-      saveGameState();
+      saveGameState(); // Zapisanie stanu gry do localStorage po przejściu do następnej karty
     } else {
       setErrorMessage('Niepoprawnie, proszę wpisać poprawną odpowiedź, aby kontynuować.'); // Komunikat o błędzie przy niepoprawnej odpowiedzi (nie można przejść dalej)
       console.log('Incorrect answer');

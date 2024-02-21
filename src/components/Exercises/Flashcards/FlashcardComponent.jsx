@@ -2,53 +2,54 @@ import React, { useState, useEffect } from 'react';
 import Modal from '/src/components/Exercises/Modal/modal';
 import './Flashcards.scss';
 
-const FlashcardComponent = ({ terms, onChangeGame }) => {
-  // Inicjalizacja stanu
+const FlashcardComponent = ({ terms, onChangeGame, category }) => {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [cardStatus, setCardStatus] = useState({});
   const [showModal, setShowModal] = useState(false);
 
+  const statusKey = `flashcardsStatus-${category}`; // Klucz do zapisu statusu fiszek w localStorage
+  const completionKey = `flashcardsCompleted-${category}`; // Klucz do zapisu statusu ukończenia fiszek w localStorage
+
   useEffect(() => {
-    // Pobranie statusu fiszek z localStorage
-    const savedStatus = JSON.parse(localStorage.getItem('flashcardsStatus')) || {};
-    setCardStatus(savedStatus);
+    const savedStatus = JSON.parse(localStorage.getItem(statusKey)) || {}; // Pobranie statusu fiszek z localStorage
+    setCardStatus(savedStatus); // Ustawienie statusu fiszek
 
-    // Sprawdzenie, czy wszystkie fiszki zostały oznaczone jako znane
-    if (!localStorage.getItem('flashcardsCompleted')) {
-      checkCompletion(savedStatus);
+    if (!localStorage.getItem(completionKey)) {
+      // Jeśli fiszki nie zostały ukończone
+      checkCompletion(savedStatus); // to sprawdź, czy wszystkie fiszki zostały oznaczone jako znane
     }
-    console.log('Flashcards initialized with terms:', terms);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [terms]);
+  }, [terms, category]);
 
+  // Sprawdzenie, czy wszystkie fiszki zostały oznaczone jako znane
   const checkCompletion = (status) => {
-    // Sprawdzenie, czy wszystkie fiszki zostały oznaczone jako znane
     const allKnown = terms.every((term) => status[term.id] === 'known');
-    console.log('All terms known:', allKnown);
     if (allKnown && terms.length > 0) {
       setShowModal(true);
-      localStorage.setItem('flashcardsCompleted', 'true');
+      const completionKey = `flashcardsCompleted-${category}`; // Klucz do zapisu statusu ukończenia fiszek w localStorage
+      localStorage.setItem(completionKey, 'true');
     }
   };
 
+  // Odwrócenie fiszki
   const handleFlipCard = () => {
-    // Odwrócenie fiszki
     setIsFlipped(!isFlipped);
     console.log('Flashcard flipped');
   };
 
+  // Oznaczenie fiszki jako znanej lub do powtórzenia
   const handleMarkCard = (status) => {
-    // Oznaczenie fiszki jako znanej lub do powtórzenia
     const newStatus = { ...cardStatus, [terms[currentCardIndex].id]: status };
     console.log(`Flashcard marked as: ${status}`);
     setCardStatus(newStatus);
-    localStorage.setItem('flashcardsStatus', JSON.stringify(newStatus));
+    localStorage.setItem(statusKey, JSON.stringify(newStatus));
+
     // Pokaz kolor fiszki tylko na moment zanim sie zmieni
     setTimeout(() => {
       if (status === 'revisit') {
         // Resetowanie statusu fiszek, jeśli jakakolwiek fiszka została oznaczona do powtórzenia
-        localStorage.removeItem('flashcardsCompleted');
+        localStorage.removeItem(completionKey);
         console.log('Resetting flashcards completion');
       }
 
@@ -61,14 +62,13 @@ const FlashcardComponent = ({ terms, onChangeGame }) => {
     }, 500);
   };
 
+  // Przejście do następnej fiszki
   const handleNextCard = () => {
-    // Przejście do następnej fiszki
-    const nextIndex = (currentCardIndex + 1) % terms.length;
-    console.log('Moving to next card:', nextIndex);
-    setCurrentCardIndex(nextIndex);
+    setCurrentCardIndex((currentCardIndex + 1) % terms.length);
     setIsFlipped(false);
   };
 
+  // Akcje dla przycisków w modalu
   const modalActions = [
     {
       label: 'Przejrzyj fiszki',

@@ -8,15 +8,11 @@
   height: 100%;
   width: 100%;
 
-  @media (min-width: 2210px) {
-    width: 80%;
-  }
-
   .howTo_header {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90%;
+    width: 100%;
     height: 15%;
     background-color: $color-tertiary-opaque;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
@@ -31,12 +27,6 @@
       position: absolute;
       top: -100px;
       right: -160px;
-
-      @media (min-width: 2210px) {
-        height: 430px;
-        right: -200px;
-        top: -120px;
-      }
     }
 
     .howTo_header_text {
@@ -47,11 +37,10 @@
     }
   }
 
-  // New SVG Section Styles
   .howTo_section {
     display: flex;
     justify-content: center;
-    width: 90%;
+    width: 100%;
     flex-grow: 1;
 
     .howTo_container {
@@ -68,18 +57,10 @@
         gap: 50px;
         width: 270px;
 
-        @media (min-width: 2210px) {
-          width: 350px;
-        }
-
         img {
           align-self: center;
           height: 100px;
           width: auto;
-
-          @media (min-width: 2210px) {
-            height: 120px;
-          }
         }
 
         p {
@@ -109,6 +90,37 @@
           border-left: 10px solid transparent;
           border-right: 10px solid transparent;
           border-top: 10px solid $color-primary;
+        }
+      }
+    }
+  }
+}
+
+// Media queries
+@media (min-width: 2210px) {
+  .howTo {
+    width: 80%;
+
+    .howTo_header {
+      width: 90%;
+
+      img {
+        height: 430px;
+        right: -200px;
+        top: -120px;
+      }
+    }
+
+    .howTo_section {
+      .howTo_container {
+        width: 90%;
+
+        .howTo_item {
+          width: 350px;
+
+          img {
+            height: 120px;
+          }
         }
       }
     }

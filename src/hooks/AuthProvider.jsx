@@ -6,8 +6,8 @@ const AuthContext = createContext();
 // Mapowanie błędów na polskie wiadomości
 const getPolishErrorMessage = (error) => {
   const messageMap = {
-    'Invalid login credentials': 'Błędny adres e-mail lub hasło.',
-    'User already registered': 'Użytkownik już istnieje.',
+    'Invalid login credentials': 'Błędny adres e-mail lub hasło',
+    'User already registered': 'Użytkownik już istnieje',
   };
 
   // Jezeli nie ma przypisanego błędu, zwróć domyślną wiadomość

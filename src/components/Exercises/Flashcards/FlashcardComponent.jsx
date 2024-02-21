@@ -14,7 +14,7 @@ const FlashcardComponent = ({ terms, onChangeGame, category }) => {
   useEffect(() => {
     const savedStatus = JSON.parse(localStorage.getItem(statusKey)) || {}; // Pobranie statusu fiszek z localStorage
     setCardStatus(savedStatus); // Ustawienie statusu fiszek
-
+    console.log('Flashcards initialized with terms:', terms);
     if (!localStorage.getItem(completionKey)) {
       // Jeśli fiszki nie zostały ukończone
       checkCompletion(savedStatus); // to sprawdź, czy wszystkie fiszki zostały oznaczone jako znane

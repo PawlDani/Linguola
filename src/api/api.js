@@ -29,3 +29,38 @@ export const fetchTermsByCategory = async (category) => {
   // Zwraca pobrane terminy, jeśli operacja się powiedzie
   return terms;
 };
+
+// Dodaje zestaw słów do ulubionych użytkownika
+export const addFavorite = async (userId, category) => {
+  const { error } = await supabase.from('user_favorites').insert([{ user_id: userId, category }]);
+
+  if (error) {
+    console.error('Error adding favorite:', error);
+    return false;
+  }
+
+  return true;
+};
+
+// Usuwa zestaw słów z ulubionych użytkownika
+export const removeFavorite = async (userId, category) => {
+  const { error } = await supabase.from('user_favorites').delete().match({ user_id: userId, category });
+
+  if (error) {
+    console.error('Error removing favorite:', error);
+    return false;
+  }
+
+  return true;
+};
+
+// Pobiera ulubione zestawy słów użytkownika
+export const fetchFavorites = async (userId) => {
+  const { data, error } = await supabase.from('user_favorites').select('category').eq('user_id', userId);
+
+  if (error) {
+    console.error('Error fetching favorites:', error);
+    return [];
+  }
+  return data.map((fav) => fav.category);
+};

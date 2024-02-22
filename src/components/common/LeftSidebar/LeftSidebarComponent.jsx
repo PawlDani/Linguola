@@ -13,7 +13,7 @@ const LeftSidebar = () => {
     { name: 'Start', to: '/', iconClass: 'fa-solid fa-house' },
     { name: 'Ucz się', to: '/wordsets', iconClass: 'fa-solid fa-folder' },
     ...(user ? [{ name: 'Ulubione', to: '/favwordsets', iconClass: 'fa-solid fa-heart' }] : []),
-    { name: 'Postęp', to: '/progress', iconClass: 'fa-solid fa-bars-progress' },
+    // { name: 'Postęp', to: '/progress', iconClass: 'fa-solid fa-bars-progress' },
     { name: 'Instrukcja', to: '/howto', iconClass: 'fa-solid fa-compass' },
   ];
 

@@ -66,6 +66,12 @@
       padding: 10px 15px;
       word-wrap: break-word;
     }
+
+    .favorited-count {
+      font: 500 $font-size-sidebar-favorited $main-font-family;
+      color: $color-primary;
+      margin-top: 10px;
+    }
   }
 
   .auth-header {

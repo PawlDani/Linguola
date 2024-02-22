@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '/src/hooks/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import { fetchFavorites } from '/src/api/api';
 import './RightSidebar.scss';
 
 const RightSidebar = () => {
@@ -10,7 +11,22 @@ const RightSidebar = () => {
   const [isLoginActive, setIsLoginActive] = useState(true); // True dla logowania, false dla rejestracji
   const [errorMessage, setErrorMessage] = useState('');
   const [username, setUsername] = useState('');
+  const [favoritedCount, setFavoritedCount] = useState(0);
+  // Liczba ulubionych zestawów słów
   const navigate = useNavigate(); // Hook nawigacji
+
+  useEffect(() => {
+    const fetchFavoritedWordsetsCount = async () => {
+      if (user) {
+        const categories = await fetchFavorites(user.id);
+        setFavoritedCount(categories.length);
+      } else {
+        setFavoritedCount(0);
+      }
+    };
+
+    fetchFavoritedWordsetsCount();
+  }, [user]);
 
   // Walidacje pól formularza
   const validateEmail = (email) => {
@@ -103,6 +119,7 @@ const RightSidebar = () => {
             </div>
             <div className="user-name-container">
               <p className="user-name">{user.user_metadata.username}</p>
+              <p className="favorited-count">Ulubione zestawy: {favoritedCount}</p>
             </div>
           </div>
         </>

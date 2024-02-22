@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '/src/hooks/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 import './RightSidebar.scss';
 
 const RightSidebar = () => {
@@ -9,6 +10,7 @@ const RightSidebar = () => {
   const [isLoginActive, setIsLoginActive] = useState(true); // True dla logowania, false dla rejestracji
   const [errorMessage, setErrorMessage] = useState('');
   const [username, setUsername] = useState('');
+  const navigate = useNavigate(); // Hook nawigacji
 
   // Walidacje pól formularza
   const validateEmail = (email) => {
@@ -76,12 +78,22 @@ const RightSidebar = () => {
     setErrorMessage(''); // Czyszczenie błędów przy zmianie trybu
   };
 
+  // Obsługa wylogowania
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/'); // Przekierowanie na stronę główną po wylogowaniu
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
+
   return (
     <div className="right-sidebar">
       {user ? (
         // Sekcja dla zalogowanych użytkowników
         <>
-          <div className="logout" onClick={logout}>
+          <div className="logout" onClick={handleLogout}>
             <span>Wyloguj</span>
             <i className="fa-solid fa-right-from-bracket"></i>
           </div>

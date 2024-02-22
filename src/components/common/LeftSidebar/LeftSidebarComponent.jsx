@@ -1,15 +1,18 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { useAuth } from '/src/hooks/AuthProvider';
 import './LeftSidebar.scss';
 import maxLogo from '/src/assets/images/max-logo-colored.png';
 
 const LeftSidebar = () => {
   const location = useLocation(); // Użycie hooka useLocation do pobrania aktualnej ścieżki
+  const { user } = useAuth(); // Użycie hooka useAuth do pobrania informacji o zalogowanym użytkowniku
 
   // Definicja zakładek w pasku bocznym
   const tabs = [
     { name: 'Start', to: '/', iconClass: 'fa-solid fa-house' },
     { name: 'Ucz się', to: '/wordsets', iconClass: 'fa-solid fa-folder' },
+    ...(user ? [{ name: 'Ulubione', to: '/favwordsets', iconClass: 'fa-solid fa-heart' }] : []),
     { name: 'Postęp', to: '/progress', iconClass: 'fa-solid fa-bars-progress' },
     { name: 'Instrukcja', to: '/howto', iconClass: 'fa-solid fa-compass' },
   ];

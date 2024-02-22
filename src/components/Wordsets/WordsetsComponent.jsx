@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchWordsets } from '/src/api/api.js';
+import { fetchWordsets, fetchFavorites, addFavorite, removeFavorite } from '/src/api/api.js';
+import { useAuth } from '/src/hooks/AuthProvider';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -9,17 +10,17 @@ import './Wordsets.scss';
 // Komponent wyświetlający zestawy słów
 const WordSetsComponent = () => {
   const [wordsets, setWordsets] = useState([]); // Stan przechowujący zestawy słów
+  const [favorites, setFavorites] = useState([]); // Stan przechowujący ulubione zestawy słów
   const [error, setError] = useState(null); // Stan przechowujący błąd
   const navigate = useNavigate(); // Hook do nawigacji
+  const { user } = useAuth(); // Hook do autoryzacji
 
   // Efekt pobierający zestawy słów z bazy danych
   useEffect(() => {
     const loadWordsets = async () => {
       // Funkcja asynchroniczna do pobierania zestawów słów
-      console.log('Starting to load wordsets');
       try {
         const fetchedWordsets = await fetchWordsets(); // Pobranie zestawów słów
-        console.log('Fetched wordsets:', fetchedWordsets);
         if (fetchedWordsets) {
           // Jeśli zestawy słów zostały pobrane, to wyodrębnij unikalne kategorie
           const uniqueCategories = [...new Set(fetchedWordsets.map((wordSet) => wordSet.category))]; // Wyodrębnienie unikalnych kategorii
@@ -33,8 +34,18 @@ const WordSetsComponent = () => {
       }
     };
 
-    loadWordsets(); // Wywołanie funkcji ładowania zestawów słów
-  }, []);
+    // Efekt pobierający ulubione zestawy słów z bazy danych
+    const loadFavorites = async () => {
+      if (user) {
+        const fetchedFavorites = await fetchFavorites(user.id);
+        console.log('Fetched favorites:', fetchedFavorites);
+        setFavorites(fetchedFavorites);
+      }
+    };
+
+    loadWordsets();
+    loadFavorites();
+  }, [user]); // Efekt wywoływany przy zmianie użytkownika
 
   // Obsługa kliknięcia na kartę zestawu słów
   const handleWordSetClick = (category) => {
@@ -45,6 +56,47 @@ const WordSetsComponent = () => {
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  // Obsługa kliknięcia na przycisk ulubionych
+  const handleFavoriteClick = async (event, category) => {
+    event.stopPropagation(); // Zatrzymanie propagacji zdarzenia, aby nie wywołać obsługi kliknięcia na kartę
+
+    if (!user) {
+      alert('Musisz być zalogowany, aby uzyskać dostęp do tej strony'); // Alert dla użytkownika, który nie jest zalogowany
+      return;
+    }
+
+    const isFavorite = favorites.includes(category); // Sprawdza, czy kategoria jest już ulubiona
+    if (isFavorite) {
+      // Jeśli kategoria jest już ulubiona, próba jej usunięcia
+      try {
+        const success = await removeFavorite(user.id, category);
+        if (success) {
+          alert('Kategoria została usunięta z ulubionych'); // Informacja dla użytkownika
+          // Aktualizacja lokalnego stanu, aby odzwierciedlić zmianę
+          setFavorites(favorites.filter((favCategory) => favCategory !== category));
+        } else {
+          alert('Nie udało się usunąć kategorii z ulubionych'); // Informacja dla użytkownika
+        }
+      } catch (error) {
+        console.error('Błąd podczas usuwania ulubionego:', error); // Logowanie błędu
+      }
+    } else {
+      // Jeśli kategoria nie jest ulubiona, próba dodania jej do ulubionych
+      try {
+        const success = await addFavorite(user.id, category);
+        if (success) {
+          alert('Kategoria została dodana do ulubionych'); // Informacja dla użytkownika
+          // Aktualizacja lokalnego stanu, aby odzwierciedlić nową ulubioną kategorię
+          setFavorites([...favorites, category]);
+        } else {
+          alert('Nie udało się dodać kategorii do ulubionych'); // Informacja dla użytkownika
+        }
+      } catch (error) {
+        console.error('Błąd podczas dodawania do ulubionych:', error); // Logowanie błędu
+      }
+    }
   };
 
   // Ustawienia dla karuzeli
@@ -93,9 +145,15 @@ const WordSetsComponent = () => {
         {error && <div className="error-message">{error}</div>}
         <Slider {...settings}>
           {wordsets.map((category, index) => (
-            // Renderowanie kart dla każdej unikalnej kategorii
             <div key={index} className="word-set-card" onClick={() => handleWordSetClick(category)}>
-              {capitalizeFirstLetter(category)}
+              <div className="wordset-content">{capitalizeFirstLetter(category)}</div>
+              <button
+                className="favorite-btn"
+                onClick={(e) => handleFavoriteClick(e, category)}
+                aria-label="Add to favorites"
+              >
+                <i className={`fa-solid fa-bookmark ${favorites.includes(category) ? 'favorited' : ''}`}></i>
+              </button>
             </div>
           ))}
         </Slider>

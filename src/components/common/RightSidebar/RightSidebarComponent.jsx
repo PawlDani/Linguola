@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useAuth } from '/src/hooks/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import { fetchFavorites } from '/src/api/api';
@@ -119,7 +120,9 @@ const RightSidebar = () => {
             </div>
             <div className="user-name-container">
               <p className="user-name">{user.user_metadata.username}</p>
-              <p className="favorited-count">Ulubione zestawy: {favoritedCount}</p>
+              <NavLink to="/favwordsets" className="favorited-count">
+                Ulubione zestawy: {favoritedCount}
+              </NavLink>
             </div>
           </div>
         </>

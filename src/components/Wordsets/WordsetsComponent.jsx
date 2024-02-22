@@ -73,7 +73,7 @@ const WordSetsComponent = () => {
       try {
         const success = await removeFavorite(user.id, category);
         if (success) {
-          alert('Kategoria została usunięta z ulubionych'); // Informacja dla użytkownika
+          // alert('Kategoria została usunięta z ulubionych'); // Informacja dla użytkownika
           // Aktualizacja lokalnego stanu, aby odzwierciedlić zmianę
           setFavorites(favorites.filter((favCategory) => favCategory !== category));
         } else {
@@ -87,7 +87,7 @@ const WordSetsComponent = () => {
       try {
         const success = await addFavorite(user.id, category);
         if (success) {
-          alert('Kategoria została dodana do ulubionych'); // Informacja dla użytkownika
+          // alert('Kategoria została dodana do ulubionych'); // Informacja dla użytkownika
           // Aktualizacja lokalnego stanu, aby odzwierciedlić nową ulubioną kategorię
           setFavorites([...favorites, category]);
         } else {

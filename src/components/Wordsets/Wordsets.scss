@@ -57,7 +57,6 @@
 
         border-radius: 50%;
         &::before {
-          opacity: 1;
           font-size: 40px !important;
           color: $color-primary;
         }
@@ -116,6 +115,7 @@
             color: $color-fav-bookmark;
             transition: color 0.5s ease-in-out; // Add this line
             animation: bounce 1s;
+
             @keyframes bounce {
               0%,
               20%,
@@ -136,7 +136,11 @@
           i {
             color: $color-primary;
             font-size: 2rem;
-            transition: 0.3s;
+
+            // transition scale 2s ease-in-out and color 0.3s ease-in-out;
+            transition:
+              scale 0.4s ease-in-out,
+              color 0.3s ease-in-out;
 
             &:hover {
               color: $color-fav-bookmark;

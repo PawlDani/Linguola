@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '/src/hooks/AuthProvider';
 import './LeftSidebar.scss';
-import maxLogo from '/src/assets/images/max-logo-colored.png';
+import maxLogo from '/src/assets/images/logo-white.png';
 
 const LeftSidebar = () => {
   const location = useLocation(); // Użycie hooka useLocation do pobrania aktualnej ścieżki

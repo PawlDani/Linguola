@@ -24,12 +24,12 @@
         transform 0.3s;
 
       &:hover {
-        background-color: $color-tertiary-opaque;
+        background-color: $kremowy;
         transform: translateY(-2px);
       }
 
       &.active {
-        background-color: $color-tertiary-opaque;
+        background-color: $kremowy;
         color: $text-color-exercise-selector-active;
       }
 

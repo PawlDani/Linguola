@@ -38,13 +38,17 @@
     align-items: center;
     justify-content: center;
     width: 90%;
-    height: 19%;
+    height: 210px;
     background-color: $color-tertiary-opaque;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     border-radius: $border-radius-primary;
     z-index: 1;
     position: relative;
     margin-top: 40px;
+
+    @media (max-width: 1630px) {
+      height: 190px;
+    }
 
     img {
       align-self: flex-end;
@@ -53,6 +57,17 @@
       position: absolute;
       bottom: -60px;
       left: 40px;
+
+      @media (max-width: 1630px) {
+        height: 260px;
+        left: 20px;
+        bottom: -52px;
+      }
+
+      @media (max-width: 1510px) {
+        height: 240px;
+        bottom: -50px;
+      }
     }
     .dashboard_middle_text {
       margin-left: 140px;
@@ -62,6 +77,14 @@
         font: 600 $font-size-dashboard-h1 $main-font-family;
         color: $color-primary;
         margin-bottom: 20px;
+
+        @media (max-width: 1630px) {
+          font-size: 2.8rem;
+        }
+
+        @media (max-width: 1510px) {
+          font-size: 2.4rem;
+        }
       }
 
       h3 {
@@ -69,6 +92,9 @@
         color: $color-primary;
         margin-bottom: 25px;
 
+        @media (max-width: 1510px) {
+          font-size: 1.2em;
+        }
         &:last-of-type {
           margin-bottom: 20px;
         }
@@ -88,6 +114,10 @@
       width: 1460px;
     }
 
+    @media (max-width: 2400px) {
+      width: 1320px;
+    }
+
     @media (max-width: 2210px) {
       width: 1280px;
     }
@@ -104,8 +134,16 @@
       width: 940px;
     }
 
-    @media (max-width: 1730px) {
+    @media (max-width: 1700px) {
       width: 880px;
+    }
+
+    @media (max-width: 1630px) {
+      width: 780px;
+    }
+
+    @media (max-width: 1530px) {
+      width: 680px;
     }
 
     h3 {
@@ -134,9 +172,8 @@
         align-items: center;
         text-align: center;
         margin: 0 12px; // miejsce między slajdami
-        min-width: 150px;
-        min-height: 150px;
-        max-width: 230px;
+        height: 150px;
+        width: 200px;
         overflow: hidden;
         font-size: $font-size-dashboard-slider-card;
         transition: 0.3s;
@@ -147,11 +184,12 @@
         border-radius: $border-radius-primary;
         background-color: $color-tertiary-opaque;
         transition: 0.3s;
+
         cursor: pointer;
 
         &:hover {
           opacity: 0.8;
-          transform: scale(1.1);
+          transform: scale(1.05);
         }
 
         p {

@@ -99,43 +99,6 @@ const WordSetsComponent = () => {
     }
   };
 
-  // Ustawienia dla karuzeli
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    rows: 4,
-    slidesPerRow: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          rows: 3,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          rows: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          rows: 1,
-        },
-      },
-    ],
-  };
-
   return (
     <div className="word-sets-page">
       <div className="word-sets-header">
@@ -143,22 +106,20 @@ const WordSetsComponent = () => {
       </div>
       <div className="word-sets-container">
         {error && <div className="error-message">{error}</div>}
-        <Slider {...settings}>
-          {wordsets.map((category, index) => (
-            <div key={index} className="wordset-card" onClick={() => handleWordSetClick(category)}>
-              <div className="wordset-content">
-                <p>{capitalizeFirstLetter(category)}</p>
-              </div>
-              <button
-                className="favorite-btn"
-                onClick={(e) => handleFavoriteClick(e, category)}
-                aria-label="Add to favorites"
-              >
-                <i className={`fa-solid fa-bookmark ${favorites.includes(category) ? 'favorited' : ''}`}></i>
-              </button>
+        {wordsets.map((category, index) => (
+          <div key={index} className="wordset-card" onClick={() => handleWordSetClick(category)}>
+            <div className="wordset-content">
+              <p>{capitalizeFirstLetter(category)}</p>
             </div>
-          ))}
-        </Slider>
+            <button
+              className="favorite-btn"
+              onClick={(e) => handleFavoriteClick(e, category)}
+              aria-label="Add to favorites"
+            >
+              <i className={`fa-solid fa-bookmark ${favorites.includes(category) ? 'favorited' : ''}`}></i>
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );

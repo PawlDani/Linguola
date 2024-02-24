@@ -63,10 +63,24 @@ const Dashboard = () => {
     initialSlide: 0,
     responsive: [
       {
-        breakpoint: 2180,
+        breakpoint: 2210,
         settings: {
           slidesToShow: 5,
           slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 1935,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1630,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
         },
       },
     ],

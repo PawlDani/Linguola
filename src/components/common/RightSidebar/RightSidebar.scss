@@ -25,6 +25,12 @@
     color: $text-color-sidebar-user;
     margin-bottom: 120px;
     text-decoration: none;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      color: color.scale($text-color-sidebar-user, $lightness: 23%);
+      scale: 1.02;
+    }
   }
 
   .user-profile {
@@ -75,7 +81,7 @@
       transition: 0.2s ease-in-out;
 
       &:hover {
-        color: color.scale($color-primary, $lightness: 10%);
+        color: color.scale($color-primary, $lightness: 20%);
         text-shadow: 1px 1px 2px $color-secondary;
         font-size: calc($font-size-sidebar-favorited + 1px);
       }

@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchWordsets, fetchFavorites, addFavorite, removeFavorite } from '/src/api/api.js';
 import { useAuth } from '/src/hooks/AuthProvider';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import './Wordsets.scss';
 
 // Komponent wyświetlający zestawy słów

@@ -16,7 +16,7 @@
     justify-content: space-between;
     margin-top: 20px;
     width: 90%;
-    margin-bottom: 110px;
+    margin-bottom: 50px;
 
     h2 {
       font: 600 $font-size-page-title $main-font-family;
@@ -30,10 +30,10 @@
     display: flex;
     flex-wrap: wrap;
     width: 93%;
-    margin-bottom: 50px;
+    margin-bottom: 32px;
     gap: 30px;
     justify-content: flex-start;
-    padding: 15px 20px;
+    padding: 30px 20px;
     overflow-y: auto;
 
     @media (min-width: 2210px) {

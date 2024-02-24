@@ -165,6 +165,7 @@ const TranslationComponent = ({ terms, onChangeGame, category }) => {
           )}
         </div>
         <input
+          className="translation-input"
           type="text"
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}

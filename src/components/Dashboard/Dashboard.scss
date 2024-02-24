@@ -140,12 +140,17 @@
         height: 200px;
         overflow: hidden;
         font-size: $font-size-dashboard-slider-card;
-        transition: 0.3s;
+        // transition everything 0.3s but the border color and box shadow longer
         cursor: pointer;
+        border: 4px solid $color-secondary;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
+        transition: 0.3s ease-in-out;
 
         &:hover {
           opacity: 0.8;
           transform: scale(1.05);
+          border-color: $color-modal-next;
+          box-shadow: 0 0 5px 0 $color-modal-next;
         }
       }
 
@@ -179,4 +184,5 @@
   height: 200px;
   width: 215px;
   font: 500 $font-size-wordset-card $main-font-family;
+  color: $color-primary;
 }

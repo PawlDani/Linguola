@@ -89,18 +89,24 @@
         border-radius: $border-radius-primary;
         background-color: $color-tertiary-opaque;
         margin: 20px;
-        transition: 0.3s;
         cursor: pointer;
+        transition: 0.3s ease-in-out;
 
         &:hover {
           opacity: 0.8;
-          transform: scale(1.1);
+          transform: scale(1.05);
+          border-color: $color-modal-next;
+          box-shadow: 0 0 5px 0 $color-modal-next;
         }
         .wordset-content {
           flex-grow: 1;
           display: flex;
           justify-content: center;
           align-items: center;
+        }
+
+        p {
+          color: $color-primary;
         }
 
         .favorite-btn {
@@ -140,7 +146,7 @@
           }
 
           i {
-            color: $color-primary;
+            color: rgb(73, 74, 82);
             font-size: 2rem;
 
             // transition scale 2s ease-in-out and color 0.3s ease-in-out;
@@ -150,6 +156,8 @@
 
             &:hover {
               scale: 1.4;
+
+              color: $color-fav-bookmark;
             }
           }
         }

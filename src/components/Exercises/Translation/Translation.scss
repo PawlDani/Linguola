@@ -46,13 +46,31 @@
     }
   }
 
-  input[type='text'] {
-    padding: 5px 20px;
-    width: 400px;
-    border-radius: $border-radius-translation-card;
-    border: 2px solid $color-secondary;
-    font-size: $font-size-translation-term-defintion;
-    margin-bottom: 20px;
+  // input[type='text'] {
+  //   padding: 5px 20px;
+  //   width: 400px;
+  //   border-radius: $border-radius-translation-card;
+  //   border: 2px solid $color-secondary;
+  //   font-size: $font-size-translation-term-defintion;
+  //   margin-bottom: 20px;
+  // }
+
+  .translation-input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid $color-primary;
+    border-radius: 10px;
+    background-color: $color-tertiary;
+    font: 400 $font-size-translation-input $main-font-family;
+    transition: 0.3s;
+    color: $color-primary;
+  }
+
+  .translation-input:focus {
+    border-color: $color-translation-input-border;
+    outline: none;
   }
 
   .button-container {

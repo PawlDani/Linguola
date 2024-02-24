@@ -20,19 +20,25 @@ $kremowy: #ddaf90;
 $tlo: white;
 
 // Colors
-$color-primary: #034661; // #379682 #687864  // #c3584f // !! #034661;
-$color-secondary: #dce7f4; // #edf5e1 // #dce7f4;
-$color-tertiary: #427aa1; // #05386B
-$color-tertiary-opaque: rgba(67, 123, 163, 0.509);
+// $color-primary: #034661; // #379682 #687864  // #c3584f // !! #034661;
+// $color-secondary: #dce7f4; // #edf5e1 // #dce7f4;
+// $color-tertiary: #427aa1; // #05386B
+// $color-tertiary-opaque: rgba(67, 123, 163, 0.509);
+
+/* Dark Mode Colors */
+$color-primary: #8c938e;
+$color-secondary: #323232;
+$color-tertiary: #262626;
+$color-tertiary-opaque: rgba(0, 0, 0, 0.6);
 
 // Game Colors
-$color-matching-game-card: #f9f9f9;
-$color-flashcard-front: #ffffff;
-$color-flashcard-back: #f0f0f0;
+$color-matching-game-card: #464646;
+$color-flashcard-front: #464646;
+$color-flashcard-back: #3c3b3b;
 $color-flashcard-known: #28a745;
 $color-flashcard-revisit: #dc3545;
 $color-flashcard-next: #007bff;
-$color-translation-card: #ffffff;
+$color-translation-card: #464646;
 $color-translation-right: #28a745;
 $color-translation-wrong: #dc3545;
 $color-translation-check: #28a745;
@@ -43,10 +49,11 @@ $color-matching-game-unmatched: #dc3545;
 $color-modal-next: #007bff;
 $color-modal-restart: #28a745;
 $color-fav-bookmark: #dc3545;
+$color-translation-input-border: #007bff;
 
 // Border Styles
 
-$border-style-matching-game-card: 3px solid #ccc;
+$border-style-matching-game-card: 3px solid #8c938e; // #8c938e;#ccc;
 $border-style-modal-button-next: 3px solid #007bff;
 $border-style-modal-button-restart: 3px solid #28a745;
 
@@ -81,6 +88,7 @@ $font-size-translation-term-defintion: 2rem;
 $font-size-translation-button: 1.2rem;
 $font-size-translation-header: 2rem;
 $font-size-translation-error: 1.25rem;
+$font-size-translation-input: 1.5rem;
 $font-size-logout: 1.5rem;
 $font-size-login: 1.7rem;
 $font-size-register: 1.5rem;

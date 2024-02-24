@@ -15,6 +15,7 @@
     .exercise-option {
       padding: 15px 25px;
       background-color: $color-secondary;
+      color: $color-primary;
       border: none;
       border-radius: $border-radius-exercise-selector;
       cursor: pointer;
@@ -24,13 +25,13 @@
         transform 0.3s;
 
       &:hover {
-        background-color: $color-tertiary-opaque;
+        background-color: $color-tertiary;
         transform: translateY(-2px);
       }
 
       &.active {
-        background-color: $color-tertiary-opaque;
-        color: $text-color-exercise-selector-active;
+        background-color: $color-tertiary;
+        color: $color-primary;
       }
 
       i {

@@ -39,7 +39,9 @@ const FavWordsets = () => {
       <div className="fav-wordsets-container">
         {favWordsets.map((category, index) => (
           <div key={index} className="word-set-card" onClick={() => handleWordsetClick(category)}>
-            <div className="wordset-content"> {capitalizeFirstLetter(category)}</div>
+            <div className="wordset-content">
+              <p>{capitalizeFirstLetter(category)}</p>
+            </div>
           </div>
         ))}
       </div>

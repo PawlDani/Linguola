@@ -94,7 +94,9 @@ const Dashboard = () => {
           <Slider {...sliderSettings}>
             {wordsets.map((wordset, index) => (
               <div key={index} className="wordset-slide" onClick={() => handleWordsetClick(wordset.category)}>
-                <div className="wordset-category">{capitalizeFirstLetter(wordset.category)}</div>
+                <div className="wordset-category">
+                  <p>{capitalizeFirstLetter(wordset.category)}</p>
+                </div>
               </div>
             ))}
           </Slider>

@@ -41,31 +41,38 @@ const FlashcardComponent = ({ terms, onChangeGame, category }) => {
   // Oznaczenie fiszki jako znanej lub do powtórzenia
   const handleMarkCard = (status) => {
     const newStatus = { ...cardStatus, [terms[currentCardIndex].id]: status };
-    console.log(`Flashcard marked as: ${status}`);
     setCardStatus(newStatus);
     localStorage.setItem(statusKey, JSON.stringify(newStatus));
 
-    // Pokaz kolor fiszki tylko na moment zanim sie zmieni
+    if (status === 'revisit') {
+      localStorage.removeItem(completionKey);
+    }
+
+    setIsFlipped(false); // Odwróć kartę na front przed pokazaniem następnej
+
     setTimeout(() => {
-      if (status === 'revisit') {
-        // Resetowanie statusu fiszek, jeśli jakakolwiek fiszka została oznaczona do powtórzenia
-        localStorage.removeItem(completionKey);
-        console.log('Resetting flashcards completion');
-      }
+      // Aktualizacja indeksu karty i sprawdzenie ukończenia po opóźnieniu
+      setCurrentCardIndex((prevIndex) => (prevIndex + 1) % terms.length);
 
-      handleNextCard();
-
-      // Ponowne sprawdzenie, czy wszystkie fiszki zostały oznaczone jako znane
       if (status === 'known') {
         checkCompletion(newStatus);
       }
     }, 500);
   };
-
   // Przejście do następnej fiszki
   const handleNextCard = () => {
-    setCurrentCardIndex((currentCardIndex + 1) % terms.length);
-    setIsFlipped(false);
+    if (isFlipped) {
+      // Jeśli karta jest odwrócona, najpierw odwróć ją na front
+      setIsFlipped(false);
+
+      // Opóźnij zmianę karty, aby dać czas na zakończenie animacji odwrócenia
+      setTimeout(() => {
+        setCurrentCardIndex((currentCardIndex + 1) % terms.length);
+      }, 500); // Zakładając, że animacja odwracania trwa 500ms
+    } else {
+      // Jeśli karta nie jest odwrócona, przejdź do następnej karty bez opóźnienia
+      setCurrentCardIndex((currentCardIndex + 1) % terms.length);
+    }
   };
 
   // Akcje dla przycisków w modalu

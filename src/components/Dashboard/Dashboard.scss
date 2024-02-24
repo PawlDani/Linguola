@@ -133,19 +133,25 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        margin: 0 10px; // miejsce między slajdami
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: $border-radius-primary;
-        background-color: $color-tertiary-opaque;
-        height: 200px;
+        margin: 0 12px; // miejsce między slajdami
+        min-width: 150px;
+        min-height: 150px;
+        max-width: 230px;
         overflow: hidden;
         font-size: $font-size-dashboard-slider-card;
+        transition: 0.3s;
+        cursor: pointer;
+        border: 4px solid $color-tertiary;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.6);
+        text-align: center;
+        border-radius: $border-radius-primary;
+        background-color: $color-tertiary-opaque;
         transition: 0.3s;
         cursor: pointer;
 
         &:hover {
           opacity: 0.8;
-          transform: scale(1.05);
+          transform: scale(1.1);
         }
       }
 
@@ -176,7 +182,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
-  width: 215px;
-  font: 500 $font-size-wordset-card $main-font-family;
+
+  p {
+    font: 500 $font-size-wordset-card $main-font-family;
+  }
 }

@@ -121,7 +121,7 @@ const RightSidebar = () => {
             <div className="user-name-container">
               <p className="user-name">{user.user_metadata.username}</p>
               <NavLink to="/favwordsets" className="favorited-count">
-                Ulubione zestawy: {favoritedCount}
+                <i className="fas fa-bookmark"></i> Ulubione zestawy: {favoritedCount}
               </NavLink>
             </div>
           </div>

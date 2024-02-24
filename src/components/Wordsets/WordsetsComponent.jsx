@@ -146,7 +146,9 @@ const WordSetsComponent = () => {
         <Slider {...settings}>
           {wordsets.map((category, index) => (
             <div key={index} className="word-set-card" onClick={() => handleWordSetClick(category)}>
-              <div className="wordset-content">{capitalizeFirstLetter(category)}</div>
+              <div className="wordset-content">
+                <p>{capitalizeFirstLetter(category)}</p>
+              </div>
               <button
                 className="favorite-btn"
                 onClick={(e) => handleFavoriteClick(e, category)}

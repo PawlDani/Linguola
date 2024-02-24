@@ -128,7 +128,7 @@
         height: 220px;
       }
 
-      .slick-slide {
+      .wordset-category {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -153,6 +153,10 @@
           opacity: 0.8;
           transform: scale(1.1);
         }
+
+        p {
+          font: 500 $font-size-wordset-card $main-font-family;
+        }
       }
 
       .slick-dots {
@@ -175,15 +179,5 @@
         right: -40px;
       }
     }
-  }
-}
-
-.wordset-category {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  p {
-    font: 500 $font-size-wordset-card $main-font-family;
   }
 }

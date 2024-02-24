@@ -145,7 +145,7 @@ const WordSetsComponent = () => {
         {error && <div className="error-message">{error}</div>}
         <Slider {...settings}>
           {wordsets.map((category, index) => (
-            <div key={index} className="word-set-card" onClick={() => handleWordSetClick(category)}>
+            <div key={index} className="wordset-card" onClick={() => handleWordSetClick(category)}>
               <div className="wordset-content">
                 <p>{capitalizeFirstLetter(category)}</p>
               </div>

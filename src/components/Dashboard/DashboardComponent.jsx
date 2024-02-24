@@ -57,7 +57,7 @@ const Dashboard = () => {
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 4,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 4000,
     pauseOnHover: true,
     initialSlide: 0,

@@ -1,0 +1,72 @@
+.theme-toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; // Full width of the container
+  margin-top: 530px;
+}
+
+.theme-toggle-label {
+  position: relative;
+  width: 110px; // Adjusted width to fit your sidebar
+  height: 45px; // Adjusted height for a smaller toggle
+  display: block;
+  background: #ebebeb;
+  border-radius: 25px; // Smoother border-radius for smaller size
+  box-shadow:
+    inset 0px 2px 5px rgba(0, 0, 0, 0.3),
+    inset 0px -2px 5px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 5px; // Centered within the label
+    left: 5px; // Start position
+    width: 35px; // Adjusted for a smaller toggle
+    height: 35px; // Making the toggle circular
+    background: linear-gradient(180deg, #ffcc89, #d8860b);
+    border-radius: 50%; // Fully rounded
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+  }
+
+  .sun,
+  .moon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px; // Font size for the icons
+    z-index: 1;
+  }
+
+  .sun {
+    left: 10px;
+    color: var(--color-secondary); // Default color
+    transition: color 0.3s ease;
+  }
+
+  .moon {
+    right: 10px;
+    color: var(--color-primary); // Default color
+    transition: color 0.3s ease;
+  }
+}
+
+.theme-toggle-checkbox:checked + .theme-toggle-label {
+  background: #242424;
+
+  &:after {
+    left: calc(100% - 38px); // Move to the right end of the toggle
+    background: linear-gradient(180deg, #777, #3a3a3a);
+  }
+
+  .sun {
+    color: #dbd9d9; // Sun icon color in "dark mode"
+  }
+
+  .moon {
+    color: #dbd9d9; // Moon icon color in "dark mode"
+  }
+}

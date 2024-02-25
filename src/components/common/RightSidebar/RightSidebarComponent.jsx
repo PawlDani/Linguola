@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '/src/hooks/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import { fetchFavorites } from '/src/api/api';
+import ThemeToggle from '/src/hooks/ThemeToggle';
 import './RightSidebar.scss';
 
 const RightSidebar = () => {
@@ -13,6 +14,7 @@ const RightSidebar = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [username, setUsername] = useState('');
   const [favoritedCount, setFavoritedCount] = useState(0);
+
   // Liczba ulubionych zestawów słów
   const navigate = useNavigate(); // Hook nawigacji
 
@@ -181,6 +183,7 @@ const RightSidebar = () => {
           </div>
         </>
       )}
+      <ThemeToggle />
     </div>
   );
 };

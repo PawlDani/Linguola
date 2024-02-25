@@ -14,28 +14,29 @@
 
     .exercise-option {
       padding: 15px 25px;
-      background-color: $color-secondary;
+      background-color: var(--color-secondary);
       border: none;
       border-radius: $border-radius-exercise-selector;
       cursor: pointer;
       font: 500 $font-size-exercise-title $main-font-family;
+      color: var(--color-text);
       transition:
         background-color 0.3s,
         transform 0.3s;
 
       &:hover {
-        background-color: $color-tertiary-opaque;
+        background-color: var(--color-tertiary-opaque);
         transform: translateY(-2px);
       }
 
       &.active {
-        background-color: $color-tertiary-opaque;
-        color: $text-color-exercise-selector-active;
+        background-color: var(--color-tertiary-opaque);
+        color: var(--color-text);
       }
 
       i {
         margin-right: 10px;
-        color: $color-primary;
+        color: var(--color-primary);
       }
     }
   }

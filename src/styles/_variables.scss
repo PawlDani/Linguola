@@ -19,11 +19,21 @@ $zielony: #7ecf05;
 $kremowy: #ddaf90;
 $tlo: white;
 
-// Colors
-$color-primary: #034661; // #379682 #687864  // #c3584f // !! #034661;
-$color-secondary: #dce7f4; // #edf5e1 // #dce7f4;
-$color-tertiary: #427aa1; // #05386B
-$color-tertiary-opaque: rgba(67, 123, 163, 0.509);
+:root {
+  --color-primary: #034661;
+  --color-secondary: #dce7f4;
+  --color-tertiary: #427aa1;
+  --color-tertiary-opaque: rgba(67, 123, 163, 0.509);
+  --color-text: black;
+}
+
+body.dark {
+  --color-primary: #8c938e;
+  --color-secondary: #323232;
+  --color-tertiary: #262626;
+  --color-tertiary-opaque: rgba(0, 0, 0, 0.6);
+  --color-text: #8c938e;
+}
 
 // Game Colors
 $color-matching-game-card: #f9f9f9;
@@ -55,7 +65,7 @@ $text-color-primary: #dce7f4;
 $text-color-flashcard-button: #ffffff;
 $text-color-exercise-selector-active: #ffffff;
 $text-color-translation-button: #ffffff;
-$text-color-sidebar-user: $color-primary;
+$text-color-sidebar-user: #034661;
 $text-color-sidebar-wrong-credentials: #dc3545;
 
 // Sizes

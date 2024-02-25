@@ -50,7 +50,7 @@
     padding: 5px 20px;
     width: 400px;
     border-radius: $border-radius-translation-card;
-    border: 2px solid $color-secondary;
+    border: 2px solid var(--color-secondary);
     font-size: $font-size-translation-term-defintion;
     margin-bottom: 20px;
   }

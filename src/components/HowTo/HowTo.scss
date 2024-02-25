@@ -14,7 +14,7 @@
     justify-content: center;
     width: 100%;
     height: 15%;
-    background-color: $color-tertiary-opaque;
+    background-color: var(--color-tertiary-opaque);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     border-radius: $border-radius-primary;
     z-index: 1;
@@ -32,7 +32,7 @@
     .howTo_header_text {
       h2 {
         font: 600 $font-size-how-to-header $main-font-family;
-        color: $color-primary;
+        color: var(--color-primary);
       }
     }
   }
@@ -67,59 +67,59 @@
           height: 260px;
           width: 100%;
           font: 500 $font-size-how-to-text $main-font-family;
-          color: $color-primary;
+          color: var(--color-primary);
         }
-      }
 
-      .arrow {
-        flex: 0 0 30px;
-        height: 5px;
-        border-radius: 5px;
-        background-color: $color-primary;
-        position: relative;
-        margin: 0 20px;
-
-        &::before,
-        &::after {
-          content: '';
-          position: absolute;
-          top: -2px;
-          right: -10px;
-          transform: rotate(270deg);
+        .arrow {
+          flex: 0 0 30px;
+          height: 5px;
           border-radius: 5px;
-          border-left: 10px solid transparent;
-          border-right: 10px solid transparent;
-          border-top: 10px solid $color-primary;
+          background-color: var(--color-primary);
+          position: relative;
+          margin: 0 20px;
+
+          &::before,
+          &::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: -10px;
+            transform: rotate(270deg);
+            border-radius: 5px;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid var(--color-primary);
+          }
         }
       }
     }
   }
-}
 
-// Media queries
-@media (min-width: 2210px) {
-  .howTo {
-    width: 80%;
+  // Media queries
+  @media (min-width: 2210px) {
+    .howTo {
+      width: 80%;
 
-    .howTo_header {
-      width: 90%;
-
-      img {
-        height: 430px;
-        right: -200px;
-        top: -120px;
-      }
-    }
-
-    .howTo_section {
-      .howTo_container {
+      .howTo_header {
         width: 90%;
 
-        .howTo_item {
-          width: 350px;
+        img {
+          height: 430px;
+          right: -200px;
+          top: -120px;
+        }
+      }
 
-          img {
-            height: 120px;
+      .howTo_section {
+        .howTo_container {
+          width: 90%;
+
+          .howTo_item {
+            width: 350px;
+
+            img {
+              height: 120px;
+            }
           }
         }
       }

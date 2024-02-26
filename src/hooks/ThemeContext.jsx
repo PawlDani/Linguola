@@ -1,24 +1,24 @@
-// ThemeContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const ThemeContext = createContext();
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     const storedTheme = localStorage.getItem('theme');
-    return storedTheme || 'light'; // Default to 'light' if no stored preference
+    return storedTheme || 'light';
   });
 
   useEffect(() => {
-    document.body.className = theme; // Apply the theme class to the body
-    localStorage.setItem('theme', theme); // Save user's preference to localStorage
+    document.body.className = theme;
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme); // Update the theme state, triggering useEffect to save and apply the theme
+    setTheme(newTheme);
   };
 
   return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;

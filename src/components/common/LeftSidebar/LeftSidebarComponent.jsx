@@ -3,8 +3,11 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '/src/hooks/AuthProvider';
 import './LeftSidebar.scss';
 import maxLogo from '/src/assets/images/max-logo-colored.png';
+import logoWhite from '/src/assets/images/logoWhite.png';
+import { useTheme } from '/src/hooks/ThemeContext';
 
 const LeftSidebar = () => {
+  const { theme } = useTheme();
   const location = useLocation(); // Użycie hooka useLocation do pobrania aktualnej ścieżki
   const { user } = useAuth(); // Użycie hooka useAuth do pobrania informacji o zalogowanym użytkowniku
 
@@ -28,7 +31,9 @@ const LeftSidebar = () => {
     <div className="sidebar">
       <div className="sidebar_top">
         <div className="sidebar_logo">
-          <img src={maxLogo} alt="logo" />
+          <NavLink to="/">
+            <img src={theme === 'dark' ? logoWhite : maxLogo} alt="logo" />
+          </NavLink>
         </div>
       </div>
       <div className="sidebar_bottom">

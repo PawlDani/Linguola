@@ -57,7 +57,7 @@ const FlashcardComponent = ({ terms, onChangeGame, category }) => {
       if (status === 'known') {
         checkCompletion(newStatus);
       }
-    }, 500);
+    }, 800);
   };
   // Przejście do następnej fiszki
   const handleNextCard = () => {
@@ -68,7 +68,7 @@ const FlashcardComponent = ({ terms, onChangeGame, category }) => {
       // Opóźnij zmianę karty, aby dać czas na zakończenie animacji odwrócenia
       setTimeout(() => {
         setCurrentCardIndex((currentCardIndex + 1) % terms.length);
-      }, 500); // Zakładając, że animacja odwracania trwa 500ms
+      }, 800);
     } else {
       // Jeśli karta nie jest odwrócona, przejdź do następnej karty bez opóźnienia
       setCurrentCardIndex((currentCardIndex + 1) % terms.length);

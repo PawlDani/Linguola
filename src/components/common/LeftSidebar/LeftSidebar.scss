@@ -26,6 +26,11 @@
       img {
         width: auto;
         height: 100px;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+          scale: 1.05;
+        }
       }
     }
   }
@@ -42,14 +47,14 @@
           display: flex;
           padding: 20px 20px;
           font: 500 $font-size-sidebar $main-font-family;
-          color: var(--color-secondary);
+          color: var(--color-sidebar-tab);
           margin-bottom: 20px;
           text-decoration: none;
           letter-spacing: 1.2px;
           transition: color 0.3s ease;
 
           &:hover {
-            color: var(--color-primary);
+            color: var(--text-color-hover);
           }
 
           .icon {
@@ -59,7 +64,7 @@
         }
 
         a.active {
-          color: var(--color-primary);
+          color: var(--text-color-hover);
           background-color: var(--color-secondary);
           border-radius: 20px;
           box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);

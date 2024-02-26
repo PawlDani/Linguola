@@ -138,7 +138,6 @@ const TranslationComponent = ({ terms, onChangeGame, category }) => {
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)} // Aktualizacja wprowadzonego tekstu
           placeholder={isCorrect === false ? 'Przepisz odpowiedź' : 'Wpisz tłumaczenie'} // Zmiana placeholdera w zależności od stanu
-          autoFocus // Automatyczne ustawienie fokusu na polu wprowadzania
         />
         <div className="button-container">
           <button className="check-button" onClick={handleCheckAnswer} disabled={isCorrect !== null}>

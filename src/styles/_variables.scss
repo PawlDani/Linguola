@@ -25,18 +25,45 @@ $tlo: white;
   --color-tertiary: #427aa1;
   --color-tertiary-opaque: rgba(67, 123, 163, 0.509);
   --color-text: black;
+  --color-time-text: #427aa1;
+  --color-sidebar-tab: #dce7f4;
+  --text-color-hover: #034661;
+  --input-text-color: black;
+  --color-logout-button: #034661;
+  --color-card-border-hover: #034661;
+  --color-flashcard-front: #ffffff;
+  --color-flashcard-back: #f0f0f0;
+  --color-flashcard-text: black;
+  --color-matching-game-card: #f9f9f9;
+  --color-translation-card: #ffffff;
+  --border-color-matching-game-card: 3px solid #ccc;
+  --text-color-button-sidebar: #034661;
+  --color-input-field: #f9f9f9;
 }
 
 body.dark {
-  --color-primary: #8c938e;
+  --color-primary: #c5c5c5;
   --color-secondary: #323232;
   --color-tertiary: #262626;
-  --color-tertiary-opaque: rgba(0, 0, 0, 0.6);
-  --color-text: #8c938e;
+  --color-tertiary-opaque: #00000099;
+  --color-text: #c5c5c5;
+  --color-time-text: #c5c5c5;
+  --color-sidebar-tab: #c5c5c5;
+  --text-color-hover: #057fb1;
+  --input-text-color: white;
+  --color-logout-button: #057fb1;
+  --color-card-border-hover: #057fb1;
+  --color-flashcard-back: #404040;
+  --color-flashcard-front: #464646;
+  --color-flashcard-text: white;
+  --color-matching-game-card: #464646;
+  --color-translation-card: #464646;
+  --border-color-matching-game-card: 3px solid #00000099;
+  --text-color-button-sidebar: #057fb1;
+  --color-input-field: #464646;
 }
 
 // Game Colors
-$color-matching-game-card: #f9f9f9;
 $color-flashcard-front: #ffffff;
 $color-flashcard-back: #f0f0f0;
 $color-flashcard-known: #28a745;
@@ -56,7 +83,6 @@ $color-fav-bookmark: #dc3545;
 
 // Border Styles
 
-$border-style-matching-game-card: 3px solid #ccc;
 $border-style-modal-button-next: 3px solid #007bff;
 $border-style-modal-button-restart: 3px solid #28a745;
 
@@ -65,8 +91,8 @@ $text-color-primary: #dce7f4;
 $text-color-flashcard-button: #ffffff;
 $text-color-exercise-selector-active: #ffffff;
 $text-color-translation-button: #ffffff;
-$text-color-sidebar-user: #034661;
 $text-color-sidebar-wrong-credentials: #dc3545;
+$text-color-hover: #034661;
 
 // Sizes
 

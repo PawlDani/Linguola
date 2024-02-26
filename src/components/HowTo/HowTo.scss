@@ -13,35 +13,35 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 15%;
+    min-height: 140px;
     background-color: var(--color-tertiary-opaque);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     border-radius: $border-radius-primary;
     z-index: 1;
-    position: relative;
     margin-top: 60px;
 
-    img {
-      height: 350px;
-      z-index: 2;
-      position: absolute;
-      top: -100px;
-      right: -160px;
-    }
-
     .howTo_header_text {
+      position: relative;
       h2 {
         font: 600 $font-size-how-to-header $main-font-family;
         color: var(--color-primary);
       }
     }
+    img {
+      height: 350px;
+      z-index: 2;
+      position: absolute;
+      top: -20px;
+      right: 220px;
+    }
   }
 
   .howTo_section {
+    margin-top: 120px;
     display: flex;
     justify-content: center;
     width: 100%;
-    flex-grow: 1;
+    overflow: auto;
 
     .howTo_container {
       display: flex;
@@ -49,6 +49,7 @@
       align-items: center;
       width: 100%;
       margin-bottom: 100px;
+      flex-wrap: wrap;
 
       .howTo_item {
         display: flex;
@@ -56,6 +57,7 @@
         text-align: center;
         gap: 50px;
         width: 270px;
+        margin-bottom: 80px;
 
         img {
           align-self: center;
@@ -67,7 +69,7 @@
           height: 260px;
           width: 100%;
           font: 500 $font-size-how-to-text $main-font-family;
-          color: var(--color-primary);
+          color: var(--color-text);
         }
 
         .arrow {
@@ -95,6 +97,20 @@
     }
   }
 
+  @media (max-width: 1580px) {
+    .howTo_header {
+      .howTo_header_text {
+        h2 {
+          font-size: 2.5rem;
+        }
+      }
+      img {
+        height: 300px;
+        top: 10px;
+        // right: 250px;
+      }
+    }
+  }
   // Media queries
   @media (min-width: 2210px) {
     .howTo {

@@ -13,18 +13,18 @@
   .card {
     height: 100px;
     width: 220px;
-    border: $border-style-matching-game-card;
+    border: var(--border-color-matching-game-card);
     border-radius: $border-radius-matching-game;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-color: $color-matching-game-card;
+    background-color: var(--color-matching-game-card);
     transition:
       transform 0.2s,
       box-shadow 0.2s;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+    color: var(--color-text);
     &:hover {
       transform: scale(1.05);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -58,9 +58,9 @@
   .progress-bar-container {
     grid-column: 1 / -1;
     height: 20px;
-    background-color: #ddd;
+    background-color: var(color-matching-game-card);
     border-radius: 8px;
-    border: $border-style-matching-game-card;
+    border: var(--border-color-matching-game-card);
     margin-top: 20px;
   }
 

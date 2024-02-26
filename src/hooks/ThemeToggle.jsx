@@ -1,7 +1,6 @@
-// ThemeToggle.jsx
 import React from 'react';
-import { useTheme } from '/src/hooks/ThemeContext'; // Adjust path as needed
-import './ThemeToggle.scss'; // Ensure this file exists with appropriate styles
+import { useTheme } from '/src/hooks/ThemeContext';
+import './ThemeToggle.scss';
 
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
@@ -15,11 +14,11 @@ const ThemeToggle = () => {
         type="checkbox"
         checked={isDarkMode}
         onChange={toggleTheme}
-        style={{ display: 'none' }} // Keep the checkbox hidden; the label acts as the toggle
+        style={{ display: 'none' }}
       />
       <label htmlFor="theme-toggle" className="theme-toggle-label">
-        <i className="sun fas fa-sun"></i> {/* Font Awesome Sun Icon */}
-        <i className="moon fas fa-moon"></i> {/* Font Awesome Moon Icon */}
+        <i className="sun fas fa-sun"></i>
+        <i className="moon fas fa-moon"></i>
       </label>
     </div>
   );

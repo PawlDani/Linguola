@@ -18,7 +18,7 @@ export const fetchWordsets = async () => {
 // Pobiera terminy z bazy danych na podstawie kategorii
 export const fetchTermsByCategory = async (category) => {
   // Wykonuje zapytanie do bazy danych Supabase z filtrem dla konkretnej kategorii
-  const { data: terms, error } = await supabase.from('finaltest').select('*').eq('category', category);
+  const { data: terms, error } = await supabase.from('finaltest').select('*').ilike('category', category);
 
   // Loguje błąd, jeśli wystąpi podczas pobierania danych dla danej kategorii
   if (error) {

@@ -7,17 +7,15 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   position: relative;
-  margin-top: 70px;
+  margin-top: 90px;
   padding: 0 15px;
   flex: 1;
-  
 
   .card {
-    flex: 1;
     min-height: 80px;
     max-height: 120px;
     min-width: 100px;
-    max-width: 180px;
+    max-width: 220px;
     padding: 0 10px;
     border: var(--color-border-matching-game-card);
     border-radius: $border-radius-matching-game;
@@ -38,6 +36,10 @@
 
     @media (max-width: 1460px) {
       min-height: 80px; // Adjust this value as needed
+    }
+
+    @media (min-width: 2180px) {
+      width: 300px; // Adjust this value as needed
     }
   }
 

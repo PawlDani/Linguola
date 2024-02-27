@@ -11,13 +11,13 @@
 // $color-quinary: #679436;
 // $color-sextary: #a5be00;
 
-// Potential colors
+// // Potential colors
 
-$left-sidebar: #c3584f;
-$flashcards-sidebar: #fbf7f0;
-$zielony: #7ecf05;
-$kremowy: #ddaf90;
-$tlo: white;
+// $left-sidebar: #c3584f;
+// $flashcards-sidebar: #fbf7f0;
+// $zielony: #7ecf05;
+// $kremowy: #ddaf90;
+// $tlo: white;
 
 :root {
   // Background colors
@@ -63,12 +63,6 @@ $tlo: white;
   --color-text-button-sidebar: #c3584f; // #034661;
   --color-text-button-sidebar-hover: #c3584f; // #034661;
   --color-text-button-sidebar-text: #fbf7f0; //#dce7f4;
-
-  --color-primary: #034661;
-  --color-secondary: #dce7f4;
-  --color-tertiary: #427aa1;
-  --color-tertiary-opaque: rgba(67, 123, 163, 0.509);
-
   --input-text-color: black;
   --color-input-field: #f9f9f9;
 }
@@ -117,12 +111,6 @@ body.dark {
   --color-text-button-sidebar: #057fb1;
   --color-text-button-sidebar-hover: #04739f;
   --color-text-button-sidebar-text: #c5c5c5;
-
-  --color-primary: #c5c5c5;
-  --color-secondary: #323232;
-  --color-tertiary: #040404;
-  --color-tertiary-opaque: #00000099;
-
   --input-text-color: white;
   --color-input-field: #464646;
 }
@@ -149,12 +137,11 @@ $border-style-modal-button-next: 3px solid #007bff;
 $border-style-modal-button-restart: 3px solid #28a745;
 
 // Text colors
-$text-color-primary: #dce7f4;
+
 $text-color-flashcard-button: #ffffff;
-$text-color-exercise-selector-active: #ffffff;
 $text-color-translation-button: #ffffff;
 $text-color-sidebar-wrong-credentials: #dc3545;
-$text-color-hover: #034661;
+
 
 // Sizes
 

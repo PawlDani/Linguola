@@ -20,56 +20,118 @@ $kremowy: #ddaf90;
 $tlo: white;
 
 :root {
+  // Background colors
+  --color-left-sidebar: #c3584f; // #427aa1;
+  --color-right-sidebar: #fbf7f0; //rgba(67, 123, 163, 0.509);
+  --color-right-sidebar-box: white; // #dce7f4;
+  --color-main-content: white; //#dce7f4;
+  --color-cards: #fbf7f0; // rgba(67, 123, 163, 0.509);
+  --color-sidebar-tab: #fbf7f0; // dce7f4;
+  --color-sidebar-tab-active: #fbf7f0; // #dce7f4;
+  --color-user-image: #c3584f; //#034661;
+  --color-bookmark: #ddaf90; //#034661;
+  --color-bookmark-favorited: #dc3545;
+  --color-scrollbar-track: #fbf7f0; //rgba(67, 123, 163, 0.509);
+  --color-scrollbar-thumb: #ddaf90; //#427aa1;
+  --color-exercise-selector: #fbf7f0; // #dce7f4;
+  --color-exercise-selector-active: #f7d8c3; // #034661;
+  --color-modal: #fbf7f0; //#dce7f4;
+  --color-translation-card: #f5f5f5; // #f9f9f9;
+  --color-flashcard-back: #f1f1f1; // #f9f9f9;
+  --color-flashcard-front: #f5f5f5; // #f9f9f9;
+  --color-matching-game-card: #f5f5f5; // #f9f9f9;
+  --color-input-field: #fbf7f0; // #dce7f4;
+  --color-input-field-focus: black;
+
+  //Border Colors
+  --color-user-card-border: #c3584f; //#034661;
+  --color-cards-border: #fbf7f0; // #427aa1;
+  --color-card-border-hover: #ddaf90; //#034661;
+  --color-border-matching-game-card: 3px solid #ccc;
+
+  // Text Colors
+  --color-text-sections: #c3584f; //#034661;
+  --color-text-main: #383736; //#034661;
+  --color-text-hover: #da8f5d; // #034661;
+  --color-text: black;
+  --color-time-text: #ddaf90; //#427aa1;
+  --color-sidebar-tab-active-text: #c3584f; // #034661;
+  --color-logout-button: #c3584f; //#034661;
+  --color-user-favorited-count: #c3584f; //#034661;
+  --color-flashcard-text: black;
+  --color-text-sidebar-login: #c3584f; //#034661;
+  --color-text-button-sidebar: #c3584f; // #034661;
+  --color-text-button-sidebar-hover: #c3584f; // #034661;
+  --color-text-button-sidebar-text: #fbf7f0; //#dce7f4;
+
   --color-primary: #034661;
   --color-secondary: #dce7f4;
   --color-tertiary: #427aa1;
   --color-tertiary-opaque: rgba(67, 123, 163, 0.509);
-  --color-text: black;
-  --color-time-text: #427aa1;
-  --color-sidebar-tab: #dce7f4;
-  --text-color-hover: #034661;
+
   --input-text-color: black;
-  --color-logout-button: #034661;
-  --color-card-border-hover: #034661;
-  --color-flashcard-front: #ffffff;
-  --color-flashcard-back: #f0f0f0;
-  --color-flashcard-text: black;
-  --color-matching-game-card: #f9f9f9;
-  --color-translation-card: #ffffff;
-  --border-color-matching-game-card: 3px solid #ccc;
-  --text-color-button-sidebar: #034661;
   --color-input-field: #f9f9f9;
 }
 
 body.dark {
-  --color-primary: #c5c5c5;
-  --color-secondary: #323232;
-  --color-tertiary: #262626;
-  --color-tertiary-opaque: #00000099;
-  --color-text: #c5c5c5;
-  --color-time-text: #c5c5c5;
+  // Background colors
+  --color-left-sidebar: #262626;
+  --color-right-sidebar: #00000099;
+  --color-right-sidebar-box: #323232; // #dce7f4;
+  --color-main-content: #323232;
+  --color-cards: #00000099;
   --color-sidebar-tab: #c5c5c5;
-  --text-color-hover: #057fb1;
-  --input-text-color: white;
-  --color-logout-button: #057fb1;
-  --color-card-border-hover: #057fb1;
+  --color-sidebar-tab-active: #323232;
+  --color-user-image: #c5c5c5;
+  --color-bookmark: #c5c5c5;
+  --color-bookmark-favorited: #dc3545;
+  --color-scrollbar-track: #00000099;
+  --color-scrollbar-thumb: #040404;
+  --color-exercise-selector: #323232;
+  --color-exercise-selector-active: #00000099;
+  --color-modal: #323232;
+  --color-translation-card: #464646;
   --color-flashcard-back: #404040;
   --color-flashcard-front: #464646;
-  --color-flashcard-text: white;
   --color-matching-game-card: #464646;
-  --color-translation-card: #464646;
-  --border-color-matching-game-card: 3px solid #00000099;
-  --text-color-button-sidebar: #057fb1;
+  --color-input-field: #00000099;
+  --color-input-field-focus: blue;
+
+  // Border Colors
+  --color-user-card-border: #c5c5c5;
+  --color-cards-border: #262626;
+  --color-card-border-hover: #057fb1;
+  --color-border-matching-game-card: 3px solid #00000099;
+
+  // Text Colors
+  --color-text-sections: #c5c5c5;
+  --color-text-main: #c5c5c5;
+  --color-text-hover: #057fb1;
+  --color-text: #c5c5c5;
+  --color-time-text: #c5c5c5;
+  --color-sidebar-tab-active-text: #057fb1;
+  --color-logout-button: #057fb1;
+  --color-user-favorited-count: #c5c5c5;
+  --color-flashcard-text: white;
+  --color-text-sidebar-login: #057fb1;
+  --color-text-button-sidebar: #057fb1;
+  --color-text-button-sidebar-hover: #04739f;
+  --color-text-button-sidebar-text: #c5c5c5;
+
+  --color-primary: #c5c5c5;
+  --color-secondary: #323232;
+  --color-tertiary: #040404;
+  --color-tertiary-opaque: #00000099;
+
+  --input-text-color: white;
   --color-input-field: #464646;
 }
 
 // Game Colors
-$color-flashcard-front: #ffffff;
-$color-flashcard-back: #f0f0f0;
+
 $color-flashcard-known: #28a745;
 $color-flashcard-revisit: #dc3545;
 $color-flashcard-next: #007bff;
-$color-translation-card: #ffffff;
 $color-translation-right: #28a745;
 $color-translation-wrong: #dc3545;
 $color-translation-check: #28a745;
@@ -109,7 +171,7 @@ $font-size-dashboard-h3: 1.3rem;
 $font-size-dashboard-h1: 3rem;
 $font-size-wordset-card: 1.5rem;
 $font-size-exercise-title: 2rem;
-$font-size-matching-game-card: 2rem;
+$font-size-matching-game-card: 1.8rem;
 $font-size-matching-modal: 1.5rem;
 $font-size-flashcard-term-defintion: 2rem;
 $font-size-flashcard-button: 1.2rem;

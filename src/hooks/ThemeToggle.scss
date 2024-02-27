@@ -1,6 +1,6 @@
 .theme-toggle-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: flex-end;
   width: 100%;
   margin-bottom: 20px;
@@ -12,7 +12,7 @@
   width: 70px;
   height: 35px;
   display: block;
-  background: #dce7f4;
+  background: white; //#dce7f4;
   border-radius: 25px;
   box-shadow:
     inset 0px 2px 5px rgba(0, 0, 0, 0.3),
@@ -50,7 +50,7 @@
 
   .moon {
     right: 10px;
-    color: var(--color-primary);
+    color: var(--color-text-main);
     transition: color 0.3s ease;
   }
 }

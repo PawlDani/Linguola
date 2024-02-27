@@ -83,6 +83,13 @@ const Dashboard = () => {
           slidesToScroll: 1,
         },
       },
+      {
+        breakpoint: 1460,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
     ],
   };
 

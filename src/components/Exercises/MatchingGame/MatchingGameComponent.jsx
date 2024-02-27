@@ -7,18 +7,28 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
   const [selectedCards, setSelectedCards] = useState([]);
   const [matchedPairs, setMatchedPairs] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const totalPairs = terms.length;
+  const [currentTerms, setCurrentTerms] = useState([]);
+  const totalPairs = currentTerms.length;
 
   // Efekt, który inicjalizuje grę po zmianie zestawu terminów
   useEffect(() => {
-    initializeGame();
-    console.log('MatchingGame initialized with terms:', terms);
+    const selectedTerms = selectSubsetOfTerms(terms, 10);
+    setCurrentTerms(selectedTerms);
+    initializeGame(selectedTerms);
+    console.log('MatchingGame initialized with terms:', selectedTerms);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [terms]);
 
+  // Funkcja wybierająca podzbiór terminów do gry
+  const selectSubsetOfTerms = (terms, maxSize) => {
+    if (terms.length <= maxSize) return terms;
+    const shuffled = [...terms].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, maxSize);
+  };
+
   // Funkcja inicjalizująca grę - tasowanie kart i resetowanie stanów
-  const initializeGame = () => {
-    const preparedCards = prepareCards(terms);
+  const initializeGame = (selectedTerms) => {
+    const preparedCards = prepareCards(selectedTerms);
     const shuffledCards = shuffleCards(preparedCards);
     setCards(shuffledCards.map((card) => ({ ...card, unmatched: false })));
     setSelectedCards([]);
@@ -27,8 +37,8 @@ const MatchingGameComponent = ({ terms, onChangeGame }) => {
   };
 
   // Przygotowanie kart - tworzenie pary term-definicja dla każdego terminu
-  const prepareCards = (terms) =>
-    terms.flatMap((term) => [
+  const prepareCards = (selectedTerms) =>
+    selectedTerms.flatMap((term) => [
       { id: `${term.id}-term`, content: term.term, type: 'term', matched: false },
       { id: `${term.id}-definition`, content: term.definition, type: 'definition', matched: false },
     ]);

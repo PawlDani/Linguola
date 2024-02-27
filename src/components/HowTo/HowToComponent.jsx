@@ -24,7 +24,7 @@ const HowTo = () => {
               zielono. Po zaznaczeniu wszystkich pojęć kolorem zielonym, przejdź do modułu &quot;Dopasowanie&quot;.
             </p>
           </div>
-          <div className="arrow"></div>
+          {/* <div className="arrow"></div> */}
           <div className="howTo_item">
             <img src={cards} alt="cards" />
             <p>
@@ -32,7 +32,7 @@ const HowTo = () => {
               będziesz czuł, że masz opanowany ten zestaw.
             </p>
           </div>
-          <div className="arrow"></div>
+          {/* <div className="arrow"></div> */}
           <div className="howTo_item">
             <img src={write} alt="write" />
             <p>

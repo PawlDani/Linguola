@@ -14,11 +14,11 @@
   z-index: 1000;
 
   .modal-content {
-    background-color: var(--color-secondary);
+    background-color: var(--color-modal);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    color: var(--color-primary);
+    color: var(--color-text);
 
     h2 {
       font: 600 $font-size-modal-title $main-font-family;

@@ -12,31 +12,38 @@
     align-items: center;
     gap: 40px;
 
+    @media (max-width: 1460px) {
+      gap: 20px;
+    }
+
     .exercise-option {
       padding: 15px 25px;
-      background-color: var(--color-secondary);
+      background-color: var(--color-exercise-selector);
       border: none;
       border-radius: $border-radius-exercise-selector;
       cursor: pointer;
       font: 500 $font-size-exercise-title $main-font-family;
-      color: var(--color-text);
+      color: var(--color-text-main);
       transition:
         background-color 0.3s,
         transform 0.3s;
 
+      @media (max-width: 1460px) {
+        font-size: 1.6rem;
+      }
       &:hover {
-        background-color: var(--color-tertiary-opaque);
+        background-color: var(--color-exercise-selector);
         transform: translateY(-2px);
       }
 
       &.active {
-        background-color: var(--color-tertiary-opaque);
-        color: var(--color-text);
+        background-color: var(--color-exercise-selector-active);
+        color: var(--color-text-main);
       }
 
       i {
         margin-right: 10px;
-        color: var(--color-primary);
+        color: var(--color-text-main);
       }
     }
   }

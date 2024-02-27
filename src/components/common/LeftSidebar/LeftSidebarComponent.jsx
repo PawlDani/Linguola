@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '/src/hooks/AuthProvider';
 import './LeftSidebar.scss';
-import maxLogo from '/src/assets/images/max-logo-colored.png';
+import maxLogo from '/src/assets/images/logoWhiteCopy.png';
 import logoWhite from '/src/assets/images/logoWhite.png';
 import { useTheme } from '/src/hooks/ThemeContext';
 
